@@ -41,6 +41,7 @@ int main( int argc, char* argv[] )
 ```
 Output:
 <div align="center">
+  <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/basic_example.png" alt="Basic example">
 ![Basic example](doc/images/basic_example.png)
 </div>
 
@@ -92,20 +93,21 @@ target_link_libraries( mytargetname PRIVATE cxxplot::cxxplot )
 
 # Example plots
 <div align="center">
-![Barnsley fern](doc/images/barnsley_fern.png)
-
+  <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/barnsley_fern.png" alt="Barnsley fern">
+  
 [Link to source for the above image](examples/03_barnsley_fern/main.cpp)
 </div>
 
+
 <div align="center">
-![Multiple plots](doc/images/multiple_plots.png)
+  <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/multiple_plots.png" alt="Multiple plots">
 
 [Link to source for the above image](examples/04_compute_and_plot/main.cpp)
 </div>
 
 ## Multiple windows dynamically, updated
 <div align="center">
-![Multiple windows](doc/images/multiple_windows.gif)
+  <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/multiple_windows.gif" alt="Multiple windows">
 </div>
 
 # A note on the implementation
