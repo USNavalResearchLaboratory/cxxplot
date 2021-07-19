@@ -111,7 +111,7 @@ target_link_libraries( mytargetname PRIVATE cxxplot::cxxplot )
 </div>
 
 # A note on the implementation
-To allow for dynamic updating, non-blocking plots, and portability accross the three main OSes (Windows, Linux, macOS), cxxplot default mode of operation is to run on the main thread. This restriction is imposed by certain OSes. 
+To allow for dynamic updating, non-blocking plots, and portability across the three main OSes (Windows, Linux, macOS), cxxplot default mode of operation is to run on the main thread. This restriction is imposed by certain OSes. 
 
 Therefore, cxxplot requires the user code to reside in a function called by ```cxxplot::exec```. This introduces the need to instead of using the typical ```main``` form:
 ```c++
