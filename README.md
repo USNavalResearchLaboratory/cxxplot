@@ -42,7 +42,6 @@ int main( int argc, char* argv[] )
 Output:
 <div align="center">
   <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/basic_example.png" alt="Basic example">
-![Basic example](doc/images/basic_example.png)
 </div>
 
 ## Compiling from source
