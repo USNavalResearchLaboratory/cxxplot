@@ -1,0 +1,6 @@
+add_subdirectory( 01_test )
+add_subdirectory( 02_test )
+add_subdirectory( 03_test )
+add_subdirectory( 04_test )
+add_subdirectory( 05_test )
+add_subdirectory( 06_test_csv )

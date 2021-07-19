@@ -1,0 +1,27 @@
+@PACKAGE_INIT@
+
+include( CMakeFindDependencyMacro )
+
+# if Qt is not found here, ${QT_VERSION_MAJOR} will not be populated and find_dependency will fail
+# which is what we want whether the caller has designated our package with REQUIRED or not.
+# Therefore REQUIRED should be avoided here.
+find_package( QT NAMES Qt6 Qt5 COMPONENTS Core Widgets Gui OpenGL PrintSupport )
+
+# No REQUIRED below because find_dependency forwards from the caller and the caller may not have our
+# package designated REQUIRED
+find_dependency( Qt${QT_VERSION_MAJOR}
+  COMPONENTS
+    Core
+    Widgets
+    Gui
+    OpenGL
+    PrintSupport
+    )
+
+find_dependency( Threads )
+
+find_dependency( OpenGL )
+
+if ( NOT TARGET cxxplot::cxxplot )
+  include( ${CMAKE_CURRENT_LIST_DIR}/cxxplotTargets.cmake )
+endif( )

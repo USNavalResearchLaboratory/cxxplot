@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="cxxplot_logo">images/cxxplot_logo.png</file>
+    </qresource>
+</RCC>

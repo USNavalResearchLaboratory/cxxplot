@@ -1,0 +1,1 @@
+QCustomPlot has multiple licensing options including GPL and a commercial license. Please check the QCustomplot website for specific information: https://www.qcustomplot.com/ ( accessed May 2021 ).
