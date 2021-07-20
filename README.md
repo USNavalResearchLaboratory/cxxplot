@@ -111,7 +111,7 @@ target_link_libraries( mytargetname PRIVATE cxxplot::cxxplot )
 </div>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/linecolor.png" alt="Multiple plots">
+  <img width=600 src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/linecolor.png" alt="Multiple plots">
 
 [Link to source for the above image](examples/04_compute_and_plot/main.cpp)
 </div>
