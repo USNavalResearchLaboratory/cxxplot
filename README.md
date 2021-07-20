@@ -75,7 +75,7 @@ target_link_libraries( mytarget PRIVATE cxxplot::cxxplot )
 ```
 A full standalone example, that can be also used as a starting point can be found in [101_cmake_setup1](examples/101_cmake_setup1).
 
-## Automatic integration using CMake's FetchContent (installation not necessary)
+## Automatic integration using CMake's FetchContent (will download and compile on demand)
 Add the following in your cmake file:
 ```cmake
 FetchContent_Declare(
