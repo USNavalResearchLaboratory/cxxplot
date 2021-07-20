@@ -88,8 +88,6 @@ FetchContent_MakeAvailable(cxxplot)
 # link to it:
 target_link_libraries( mytargetname PRIVATE cxxplot::cxxplot )
 ```
-## As a donwloaded third party library in your project
-
 # Example plots
 <div align="center">
   <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/barnsley_fern.png" alt="Barnsley fern">
