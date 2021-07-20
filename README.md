@@ -104,6 +104,18 @@ target_link_libraries( mytargetname PRIVATE cxxplot::cxxplot )
 [Link to source for the above image](examples/04_compute_and_plot/main.cpp)
 </div>
 
+<div align="center">
+  <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/08_animation.gif" alt="Multiple plots">
+
+[Link to source for the above image](examples/08_animation/main.cpp)
+</div>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/linecolor.png" alt="Multiple plots">
+
+[Link to source for the above image](examples/04_compute_and_plot/main.cpp)
+</div>
+
 ## Multiple windows dynamically, updated
 <div align="center">
   <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/multiple_windows.gif" alt="Multiple windows">
