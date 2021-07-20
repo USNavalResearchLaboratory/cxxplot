@@ -69,7 +69,7 @@ sudo make install
 The following snippet will allow linking to cxxplot v 0.2.1 and above:
 ```cmake
 ...
-find_package( cxxplot 0.1.4 REQUIRED ) # Modify the version or omit the version altegther
+find_package( cxxplot 0.2.1 REQUIRED ) # Modify the version or omit the version altegther
 ...
 target_link_libraries( mytarget PRIVATE cxxplot::cxxplot )
 ```
