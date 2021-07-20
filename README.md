@@ -45,9 +45,9 @@ Output:
 </div>
 
 ## Compiling from source
-# Dependencies:
+# Dependencies & Requirements:
 ```
-Qt5 or Qt6
+Qt5 or Qt6 and a C++20 compliant compiler
 ```
 # Ubuntu Linux
 ## Install dependencies:
