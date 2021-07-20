@@ -70,8 +70,9 @@
 #define CXXPLOT_STRINGIFY( a ) #a
 #define cxxplot_WARNOFF                                                                            \
   _Pragma( CXXPLOT_STRINGIFY( GCC diagnostic push ) )                                              \
-    _Pragma( CXXPLOT_STRINGIFY( GCC diagnostic ignored "-Wall" ) )                                 \
-      _Pragma( "GCC diagnostic ignored \"-Wdeprecated-enum-enum-conversion\"" )
+  _Pragma( CXXPLOT_STRINGIFY( GCC diagnostic ignored "-Wall" ) )                                   \
+  _Pragma( "GCC diagnostic ignored \"-Wdeprecated-enum-enum-conversion\"" )                        \
+  _Pragma( "GCC diagnostic ignored \"-Wimplicit-fallthrough\"" )
 
 #define cxxplot_WARNON _Pragma( CXXPLOT_STRINGIFY( GCC diagnostic pop ) )
 #endif
