@@ -55,7 +55,7 @@ In a command line type:
 ```bash
 sudo apt install qt5base-dev git cmake build-essential
 ````
-## Clone git repository, compile and install
+## (Optional): Clone git repository, compile and install
 ```bash
 git clone https://github.com/USNavalResearchLaboratory/cxxplot.git
 mkdir cxxplotbuild && cd cxxplotbuild
@@ -75,7 +75,7 @@ target_link_libraries( mytarget PRIVATE cxxplot::cxxplot )
 ```
 A full standalone example, that can be also used as a starting point can be found in [101_cmake_setup1](examples/101_cmake_setup1).
 
-## Automatic integration using CMake's FetchContent
+## Automatic integration using CMake's FetchContent (installation not necessary)
 Add the following in your cmake file:
 ```cmake
 FetchContent_Declare(
