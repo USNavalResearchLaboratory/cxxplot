@@ -33,19 +33,19 @@ figure::figure( QPointer< widget > plot_widget )
 
   set_axes_line_width( 1.0 );
 
-  auto pen = plot_widget->xAxis->grid()->pen();
+  auto pen = plot_widget->xAxis->grid( )->pen( );
   pen.setWidthF( 0.5 );
-  plot_widget->xAxis->grid()->setPen( pen );
+  plot_widget->xAxis->grid( )->setPen( pen );
 
-  pen = plot_widget->yAxis->grid()->pen();
+  pen = plot_widget->yAxis->grid( )->pen( );
   pen.setWidthF( 0.5 );
-  plot_widget->yAxis->grid()->setPen( pen );
+  plot_widget->yAxis->grid( )->setPen( pen );
 
-//  auto col = color::default_order[graphs_.size() % color::default_order.size()];
+  //  auto col = color::default_order[graphs_.size() % color::default_order.size()];
 
-//  graphs_.emplace_back( new cxxplot::graph( window_proxy_->plot_widget_, this ) );
+  //  graphs_.emplace_back( new cxxplot::graph( window_proxy_->plot_widget_, this ) );
 
-//  graphs_.rbegin()->get()->set_color( col );
+  //  graphs_.rbegin()->get()->set_color( col );
 }
 
 void figure::fit_to_data( const bool& request_replot )
@@ -111,11 +111,11 @@ class graph& figure::add_graph( )
   // a previusly inserted graph. Should graphs allow a copy and have the semantics of
   // a smart pointer ?
   invoke_blocking( [ this ]( ) {
-      auto col = color::default_order[graphs_.size() % color::default_order.size()];
+    auto col = color::default_order[ graphs_.size( ) % color::default_order.size( ) ];
 
     graphs_.emplace_back( new cxxplot::graph( window_proxy_->plot_widget_, this ) );
 
-    graphs_.rbegin()->get()->set_color( col );
+    graphs_.rbegin( )->get( )->set_color( col );
   } );
 
   return *( *( graphs_.rbegin( ) ) );
@@ -165,27 +165,45 @@ void figure::set_axes_aspect_ratio( const double& r )
   window_proxy_->handle_updated_visual_items( *this );
 }
 
-void figure::set_x_axis_scaling_type(const axis_scaling_type &sc )
+void figure::set_x_axis_scaling_type( const axis_scaling_type& sc )
 {
   if ( sc == axis_scaling_type::linear )
   {
     window_proxy_->plot_widget_->xAxis->setScaleType( QCPAxis::stLinear );
+    QSharedPointer< QCPAxisTicker > ticker(
+      new QCPAxisTicker ); // TODO: Reverting to linear has not been tested
+    window_proxy_->plot_widget_->xAxis->setTicker( ticker );
+    window_proxy_->plot_widget_->xAxis->setNumberFormat( "gb" );
+    window_proxy_->plot_widget_->xAxis->setNumberPrecision( 6 );
   }
   else
   {
     window_proxy_->plot_widget_->xAxis->setScaleType( QCPAxis::stLogarithmic );
+    QSharedPointer< QCPAxisTickerLog > logTicker( new QCPAxisTickerLog );
+    window_proxy_->plot_widget_->xAxis->setTicker( logTicker );
+    window_proxy_->plot_widget_->xAxis->setNumberFormat( "eb" );
+    window_proxy_->plot_widget_->xAxis->setNumberPrecision( 0 );
   }
 }
 
-void figure::set_y_axis_scaling_type(const axis_scaling_type &sc )
+void figure::set_y_axis_scaling_type( const axis_scaling_type& sc )
 {
   if ( sc == axis_scaling_type::linear )
   {
     window_proxy_->plot_widget_->yAxis->setScaleType( QCPAxis::stLinear );
+    QSharedPointer< QCPAxisTicker > ticker(
+      new QCPAxisTicker ); // TODO: Reverting to linear has not been tested
+    window_proxy_->plot_widget_->yAxis->setTicker( ticker );
+    window_proxy_->plot_widget_->yAxis->setNumberFormat( "gb" );
+    window_proxy_->plot_widget_->yAxis->setNumberPrecision( 6 );
   }
   else
   {
     window_proxy_->plot_widget_->yAxis->setScaleType( QCPAxis::stLogarithmic );
+    QSharedPointer< QCPAxisTickerLog > logTicker( new QCPAxisTickerLog );
+    window_proxy_->plot_widget_->yAxis->setTicker( logTicker );
+    window_proxy_->plot_widget_->yAxis->setNumberFormat( "eb" );
+    window_proxy_->plot_widget_->yAxis->setNumberPrecision( 0 );
   }
 }
 
@@ -318,43 +336,43 @@ void figure::set_ylabel( std::string new_label )
   window_proxy_->handle_updated_visual_items( *this );
 }
 
-void figure::set_axes_line_width(const double &t)
+void figure::set_axes_line_width( const double& t )
 {
-  invoke_blocking([this,t](){
-      {
-          auto pen = window_proxy_->plot_widget_->xAxis->tickPen();
-          pen.setWidthF( t );
-          window_proxy_->plot_widget_->xAxis->setTickPen( pen );
-      }
+  invoke_blocking( [ this, t ]( ) {
+    {
+      auto pen = window_proxy_->plot_widget_->xAxis->tickPen( );
+      pen.setWidthF( t );
+      window_proxy_->plot_widget_->xAxis->setTickPen( pen );
+    }
 
-      {
-          auto pen = window_proxy_->plot_widget_->xAxis->basePen();
-          pen.setWidthF( t );
-          window_proxy_->plot_widget_->xAxis->setBasePen( pen );
-      }
+    {
+      auto pen = window_proxy_->plot_widget_->xAxis->basePen( );
+      pen.setWidthF( t );
+      window_proxy_->plot_widget_->xAxis->setBasePen( pen );
+    }
 
-      {
-          auto pen = window_proxy_->plot_widget_->xAxis2->basePen();
-          pen.setWidthF( t );
-          window_proxy_->plot_widget_->xAxis2->setBasePen( pen );
-      }
+    {
+      auto pen = window_proxy_->plot_widget_->xAxis2->basePen( );
+      pen.setWidthF( t );
+      window_proxy_->plot_widget_->xAxis2->setBasePen( pen );
+    }
 
-      {
-          auto pen = window_proxy_->plot_widget_->yAxis->tickPen();
-          pen.setWidthF( t );
-          window_proxy_->plot_widget_->yAxis->setTickPen( pen );
-      }
+    {
+      auto pen = window_proxy_->plot_widget_->yAxis->tickPen( );
+      pen.setWidthF( t );
+      window_proxy_->plot_widget_->yAxis->setTickPen( pen );
+    }
 
-      {
-          auto pen = window_proxy_->plot_widget_->yAxis->basePen();
-          pen.setWidthF( t );
-          window_proxy_->plot_widget_->yAxis->setBasePen( pen );
-      }
-      {
-          auto pen = window_proxy_->plot_widget_->yAxis2->basePen();
-          pen.setWidthF( t );
-          window_proxy_->plot_widget_->yAxis2->setBasePen( pen );
-      }
-    });
+    {
+      auto pen = window_proxy_->plot_widget_->yAxis->basePen( );
+      pen.setWidthF( t );
+      window_proxy_->plot_widget_->yAxis->setBasePen( pen );
+    }
+    {
+      auto pen = window_proxy_->plot_widget_->yAxis2->basePen( );
+      pen.setWidthF( t );
+      window_proxy_->plot_widget_->yAxis2->setBasePen( pen );
+    }
+  } );
 }
 }
