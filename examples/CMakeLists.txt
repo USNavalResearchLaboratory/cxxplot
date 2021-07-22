@@ -15,3 +15,4 @@ if (NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 endif()
 
 add_subdirectory( 10_opengl )
+add_subdirectory( 11_logplots )

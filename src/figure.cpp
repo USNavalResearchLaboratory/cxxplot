@@ -165,6 +165,30 @@ void figure::set_axes_aspect_ratio( const double& r )
   window_proxy_->handle_updated_visual_items( *this );
 }
 
+void figure::set_x_axis_scaling_type(const axis_scaling_type &sc )
+{
+  if ( sc == axis_scaling_type::linear )
+  {
+    window_proxy_->plot_widget_->xAxis->setScaleType( QCPAxis::stLinear );
+  }
+  else
+  {
+    window_proxy_->plot_widget_->xAxis->setScaleType( QCPAxis::stLogarithmic );
+  }
+}
+
+void figure::set_y_axis_scaling_type(const axis_scaling_type &sc )
+{
+  if ( sc == axis_scaling_type::linear )
+  {
+    window_proxy_->plot_widget_->yAxis->setScaleType( QCPAxis::stLinear );
+  }
+  else
+  {
+    window_proxy_->plot_widget_->yAxis->setScaleType( QCPAxis::stLogarithmic );
+  }
+}
+
 QPointer< widget > figure::plot_widget( )
 {
   return window_proxy_->plot_widget_;

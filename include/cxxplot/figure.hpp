@@ -51,11 +51,17 @@ cxxplot_WARNOFF
 #include <memory>
 #include <vector>
 
-  namespace cxxplot
+namespace cxxplot
 {
 
   class window_proxy;
   class widget;
+
+  enum class axis_scaling_type
+  {
+    linear,
+    logarithmic
+  };
 
   class figure : public named_parameters::supports_named_parameters< figure >
   {
@@ -137,8 +143,18 @@ cxxplot_WARNOFF
     detail::setter< bool > auto_fit { [ this ]( const bool& ar ) { this->set_auto_fit( ar ); } };
 
     void                   set_axes_aspect_ratio( const double& r );
-    detail::setter< bool > axes_aspect_ratio { [ this ]( const double& r ) {
+    detail::setter< double > axes_aspect_ratio { [ this ]( const double& r ) {
       this->set_axes_aspect_ratio( r );
+    } };
+
+    void set_x_axis_scaling_type( const axis_scaling_type& sc );
+    detail::setter< axis_scaling_type > x_axis_scaling_type { [ this ]( const axis_scaling_type& sc ) {
+      this->set_x_axis_scaling_type( sc );
+    } };
+
+    void set_y_axis_scaling_type( const axis_scaling_type& sc );
+    detail::setter< axis_scaling_type > y_axis_scaling_type { [ this ]( const axis_scaling_type& sc ) {
+      this->set_y_axis_scaling_type( sc );
     } };
 
     friend class graph;
@@ -215,6 +231,8 @@ cxxplot_WARNOFF
   {
   inline const named_parameter xlim_ { &figure::set_xlim };
   inline const named_parameter ylim_ { &figure::set_ylim };
+  inline const named_parameter x_axis_scaling_type_ { &figure::set_x_axis_scaling_type };
+  inline const named_parameter y_axis_scaling_type_ { &figure::set_y_axis_scaling_type };
   inline const named_parameter xlabel_ { &figure::set_xlabel };
   inline const named_parameter ylabel_ { &figure::set_ylabel };
   inline const named_parameter auto_fit_ { &figure::set_auto_fit };
