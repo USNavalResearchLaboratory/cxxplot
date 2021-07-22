@@ -139,7 +139,7 @@ int main( int argc, char* argv[] )
     // user code goes here
     ...
     return 0;
-  }
+  } );
 }
 ```
 ## Windows and linux only
