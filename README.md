@@ -152,7 +152,7 @@ int main( int argc, char* argv[] )
     ...
 }
 ```
-Instantiating the gui thread through a smart pointer, allows you for safe use accross multiple scopes (for example if you need to create it in an init() function and destroy it from a close() function).
+Instantiating the gui thread through a smart pointer, allows you for safe use across multiple scopes (for example if you need to create it in an init() function and destroy it from a close() function).
 
 # Development state
 Versions 0.x.x are alpha state versions and the interface is expected to be be evolving. Therefore if you use cxxplot in your project you are advised to use explicit version designation when using find_package or FetchContent in cmake. 
