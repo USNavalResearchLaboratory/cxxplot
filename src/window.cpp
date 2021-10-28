@@ -274,6 +274,16 @@ void window_proxy::set_legend_alignment( const alignment_t& a )
   plot_widget_->set_legend_alignment( a );
 }
 
+void window_proxy::set_legend_columns(const int &cols)
+{
+  valid_or_throw( );
+
+  plot_widget_->legend->setWrap( cols );
+  plot_widget_->legend->setRowSpacing( 0 );
+  plot_widget_->legend->setColumnSpacing( 4 );
+  plot_widget_->legend->setFillOrder( QCPLayoutGrid::FillOrder::foColumnsFirst, true );
+}
+
 const std::vector< class figure >& window_proxy::figures( ) const
 {
   valid_or_throw( );

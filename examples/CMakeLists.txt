@@ -16,3 +16,4 @@ endif()
 
 add_subdirectory( 10_opengl )
 add_subdirectory( 11_logplots )
+add_subdirectory( 12_legend_columns )

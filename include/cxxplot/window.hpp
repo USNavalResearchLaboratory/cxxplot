@@ -159,6 +159,7 @@ cxxplot_WARNOFF
                                                    set_antialiasing( yesno );
                                                  } };
 
+    // Legend should be a figure property, but it is pary of the plot in Qcustomplot
     bool                          get_show_legend( ) const;
     void                          set_show_legend( const bool& yesno );
     detail::getter_setter< bool > show_legend { [ this ]( ) { return get_show_legend( ); },
@@ -169,6 +170,11 @@ cxxplot_WARNOFF
     void                          set_legend_alignment( const alignment_t& a );
     detail::setter< alignment_t > legend_alignment { [ this ]( const alignment_t& a ) {
       set_legend_alignment( a );
+    } };
+
+    void                          set_legend_columns( const int& cols );
+    detail::setter< int > legend_columns { [ this ]( const int& cols ) {
+      set_legend_columns( cols );
     } };
 
     const std::vector< class figure >& figures( ) const;
@@ -339,6 +345,7 @@ cxxplot_WARNOFF
   inline const named_parameter window_title_ { &window_proxy::set_title };
   inline const named_parameter show_legend_ { &window_proxy::set_show_legend };
   inline const named_parameter legend_alignment_ { &window_proxy::set_legend_alignment };
+  inline const named_parameter legend_columns_ { &window_proxy::set_legend_columns};
   inline const named_parameter fonts_size_ { &window_proxy::set_fonts_size };
 
   inline const named_parameter auto_redraw_ { &window_proxy::set_auto_redraw };
