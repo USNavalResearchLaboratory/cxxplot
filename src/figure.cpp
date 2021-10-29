@@ -182,7 +182,7 @@ void figure::set_x_axis_scaling_type( const axis_scaling_type& sc )
     QSharedPointer< QCPAxisTickerLog > logTicker( new QCPAxisTickerLog );
     window_proxy_->plot_widget_->xAxis->setTicker( logTicker );
     window_proxy_->plot_widget_->xAxis->setNumberFormat( "eb" );
-    window_proxy_->plot_widget_->xAxis->setNumberPrecision( 0 );
+    window_proxy_->plot_widget_->xAxis->setNumberPrecision( 1 );
   }
 }
 
