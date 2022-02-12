@@ -30,6 +30,7 @@
 
 // patch begin
 #include <cxxplot/utils.hpp>
+#include <QtGlobal>
 //patch end
 cxxplot_WARNOFF
 
@@ -163,7 +164,13 @@ class QCPPolarGraph;
   
   It provides QMetaObject-based reflection of its enums and flags via \a QCP::staticMetaObject.
 */
-#ifndef Q_MOC_RUN
+//BEGIN PATCH // HAS BEEN TESTED WITH 5.15, 6.02 and 6.2.3. HAS NOT BEEN TESTED WITH 6.1
+#if QT_VERSION >= QT_VERSION_CHECK(6, 2, 0)
+#define QT_GREATER_EQUAL_6_2_0
+#endif
+//END PATCH
+
+#if !defined(Q_MOC_RUN) || defined(QT_GREATER_EQUAL_6_2_0) //PATCHED
 namespace QCP {
 #else
 class QCP { // when in moc-run, make it look like a class, so we get Q_GADGET, Q_ENUMS/Q_FLAGS features in namespace
@@ -183,6 +190,12 @@ class QCP { // when in moc-run, make it look like a class, so we get Q_GADGET, Q
   Q_ENUMS(SelectionType)
 public:
 #endif
+
+//BEGIN PATCH
+#if defined(QT_GREATER_EQUAL_6_2_0)
+Q_NAMESPACE
+#endif
+//END PATCH
 
 /*!
   Defines the different units in which the image resolution can be specified in the export
@@ -393,6 +406,8 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(QCP::AntialiasedElements)
 Q_DECLARE_OPERATORS_FOR_FLAGS(QCP::PlottingHints)
 Q_DECLARE_OPERATORS_FOR_FLAGS(QCP::MarginSides)
 Q_DECLARE_OPERATORS_FOR_FLAGS(QCP::Interactions)
+//BEGIN PATCH
+#if defined(QT_GREATER_EQUAL_6_2_0)
 Q_DECLARE_METATYPE(QCP::ExportPen)
 Q_DECLARE_METATYPE(QCP::ResolutionUnit)
 Q_DECLARE_METATYPE(QCP::SignDomain)
@@ -402,7 +417,8 @@ Q_DECLARE_METATYPE(QCP::PlottingHint)
 Q_DECLARE_METATYPE(QCP::Interaction)
 Q_DECLARE_METATYPE(QCP::SelectionRectMode)
 Q_DECLARE_METATYPE(QCP::SelectionType)
-
+#endif
+//END PATCH
 /* end of 'src/global.h' */
 
 

@@ -9,7 +9,7 @@
 
 cxxplot_WARNOFF
 #include "qcustomplot.h"
-  cxxplot_WARNON
+cxxplot_WARNON
 
 #include <iostream>
 

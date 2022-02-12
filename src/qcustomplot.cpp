@@ -23,9 +23,10 @@
 **          Version: 2.1.0                                                **
 ****************************************************************************/
 
+// patch begin
 #include "qcustomplot.h"
 
-// patch begin
+
 #include <cxxplot/utils.hpp>
 //patch end
 cxxplot_WARNOFF

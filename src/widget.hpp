@@ -44,11 +44,11 @@
 
 cxxplot_WARNOFF
 #include <qcustomplot.h>
-  cxxplot_WARNON
+cxxplot_WARNON
 
-    cxxplot_WARNOFF
+cxxplot_WARNOFF
 #include <QElapsedTimer>
-      cxxplot_WARNON
+cxxplot_WARNON
 
   namespace cxxplot
 {
