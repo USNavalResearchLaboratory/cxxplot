@@ -34,13 +34,14 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// NOTICE OF THIRD-PARTY SOFTWARE LICENSES. This software uses open source software packages from third
-// parties. These are available on an "as is" basis and subject to their individual license agreements.
-// Additional information can be found in the provided "licenses" folder.
+// NOTICE OF THIRD-PARTY SOFTWARE LICENSES. This software uses open source software packages from
+// third parties. These are available on an "as is" basis and subject to their individual license
+// agreements. Additional information can be found in the provided "licenses" folder.
 
 #pragma once
 
 #include "graph.hpp"
+#include "image.hpp"
 #include "named_parameter.hpp"
 
 cxxplot_WARNOFF
@@ -51,7 +52,7 @@ cxxplot_WARNOFF
 #include <memory>
 #include <vector>
 
-namespace cxxplot
+  namespace cxxplot
 {
 
   class window_proxy;
@@ -90,6 +91,8 @@ namespace cxxplot
 
     std::vector< std::unique_ptr< class graph > > graphs_;
 
+    std::vector< std::unique_ptr< class image > > images_;
+
     class graph& add_graph( );
 
     template< BasicDataContainer Container_t >
@@ -119,6 +122,12 @@ namespace cxxplot
 
     class graph& graph( const std::size_t& i );
 
+    image& add_image(unsigned char*       data,
+                      const std::size_t&   width,
+                      const std::size_t&   height,
+                      const std::size_t&   bytes_per_line,
+                      const image::Format& format );
+
     detail::setter< std::array< double, 2 > > x_range { [ this ]( std::array< double, 2 > ar ) {
       set_xlim( ar[ 0 ], ar[ 1 ] );
     } };
@@ -142,22 +151,23 @@ namespace cxxplot
     void                   set_auto_fit( const bool& ar );
     detail::setter< bool > auto_fit { [ this ]( const bool& ar ) { this->set_auto_fit( ar ); } };
 
-    void                   set_axes_aspect_ratio( const double& r );
+    void                     set_axes_aspect_ratio( const double& r );
     detail::setter< double > axes_aspect_ratio { [ this ]( const double& r ) {
       this->set_axes_aspect_ratio( r );
     } };
 
-    void set_x_axis_scaling_type( const axis_scaling_type& sc );
-    detail::setter< axis_scaling_type > x_axis_scaling_type { [ this ]( const axis_scaling_type& sc ) {
-      this->set_x_axis_scaling_type( sc );
-    } };
+    void                                set_x_axis_scaling_type( const axis_scaling_type& sc );
+    detail::setter< axis_scaling_type > x_axis_scaling_type {
+      [ this ]( const axis_scaling_type& sc ) { this->set_x_axis_scaling_type( sc ); }
+    };
 
-    void set_y_axis_scaling_type( const axis_scaling_type& sc );
-    detail::setter< axis_scaling_type > y_axis_scaling_type { [ this ]( const axis_scaling_type& sc ) {
-      this->set_y_axis_scaling_type( sc );
-    } };
+    void                                set_y_axis_scaling_type( const axis_scaling_type& sc );
+    detail::setter< axis_scaling_type > y_axis_scaling_type {
+      [ this ]( const axis_scaling_type& sc ) { this->set_y_axis_scaling_type( sc ); }
+    };
 
     friend class graph;
+    friend class image;
     friend class widget;
 
   private:
@@ -190,8 +200,8 @@ namespace cxxplot
 
     template< class Container1_t, class Container2_t, typename... Args >
     class graph& add_graph_with_two_containers( const Container1_t& c1,
-                                          const Container2_t& c2,
-                                          Args&&... args )
+                                                const Container2_t& c2,
+                                                Args&&... args )
     {
       auto& g = add_graph( );
 

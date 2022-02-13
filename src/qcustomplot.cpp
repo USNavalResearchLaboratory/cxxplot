@@ -26,7 +26,6 @@
 // patch begin
 #include "qcustomplot.h"
 
-
 #include <cxxplot/utils.hpp>
 //patch end
 cxxplot_WARNOFF

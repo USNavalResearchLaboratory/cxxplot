@@ -96,6 +96,7 @@ set( CXXPLOT_SRC
   src/execution.cpp
   src/figure.cpp
   src/graph.cpp
+  src/image.cpp
   src/qcustomplot.cpp
   src/range.cpp
   src/styles.cpp
@@ -125,6 +126,7 @@ set( CXXPLOT_PUBLIC_HDR
   include/cxxplot/cxxplot
   include/cxxplot/execution.hpp
   include/cxxplot/figure.hpp
+  include/cxxplot/image.hpp
   include/cxxplot/gettersetter.hpp
   include/cxxplot/graph.hpp
   include/cxxplot/named_parameter.hpp

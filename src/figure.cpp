@@ -132,6 +132,24 @@ graph& figure::graph( const std::size_t& i )
   return *( ( graphs_[ i ] ).get( ) );
 }
 
+image& figure::add_image( unsigned char*       data,
+                          const std::size_t&   width,
+                          const std::size_t&   height,
+                          const std::size_t&   bytes_per_line,
+                          const image::Format& format )
+{
+  invoke_blocking( [ &, this ]( ) {
+    images_.emplace_back( new cxxplot::image(
+      data, width, height, bytes_per_line, format, window_proxy_->plot_widget_, this ) );
+
+    window_proxy_->plot_widget_->yAxis->setRangeReversed( true );
+  } );
+
+  handle_updated_visual_items( );
+
+  return *( *( images_.rbegin( ) ) );
+}
+
 void figure::set_auto_fit( const bool& ar )
 {
   autoFit_ = ar;
