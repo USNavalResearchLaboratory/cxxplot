@@ -84,6 +84,17 @@ void figure::set_xlim( double lower, double upper )
   window_proxy_->handle_updated_visual_items( *this );
 }
 
+std::array< double, 2 > figure::get_xlim( )
+{
+  if ( !window_proxy_->is_plot_valid( "get_xlim" ) )
+  {
+    return std::array< double, 2 >( );
+  }
+
+  auto range = window_proxy_->plot_widget_->xAxis->range( );
+  return std::array< double, 2 > { range.lower, range.upper };
+}
+
 void figure::set_ylim( double lower, double upper )
 {
   if ( !window_proxy_->is_plot_valid( "set_ylim" ) )
@@ -103,6 +114,17 @@ void figure::set_ylim( double lower, double upper )
     [ this, &lower, &upper ]( ) { window_proxy_->plot_widget_->yAxis->setRange( lower, upper ); } );
 
   window_proxy_->handle_updated_visual_items( *this );
+}
+
+std::array< double, 2 > figure::get_ylim( )
+{
+  if ( !window_proxy_->is_plot_valid( "get_xlim" ) )
+  {
+    return std::array< double, 2 >( );
+  }
+
+  auto range = window_proxy_->plot_widget_->yAxis->range( );
+  return std::array< double, 2 > { range.lower, range.upper };
 }
 
 class graph& figure::add_graph( )

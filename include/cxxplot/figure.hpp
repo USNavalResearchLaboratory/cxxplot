@@ -75,8 +75,10 @@ cxxplot_WARNOFF
     void fit_to_data( const bool& request_replot = true );
 
     void set_xlim( double lower, double upper );
+    std::array<double, 2> get_xlim( );
 
     void set_ylim( double lower, double upper );
+    std::array<double, 2> get_ylim( );
 
     std::string get_xlabel( ) const;
     void        set_xlabel( std::string new_label );
