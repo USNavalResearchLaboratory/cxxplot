@@ -5,10 +5,9 @@ add_subdirectory( 04_compute_and_plot )
 add_subdirectory( 05_simple )
 
 
-# TODO: When ranges are mature make sure it works on MSVC as well
-if (NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+# TODO: When ranges are mature make sure the following works on MSVC, INTEL and CLANG.
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   add_subdirectory( 06_ranges )
-
   add_subdirectory( 07_line_color_order )
   add_subdirectory( 08_animation )
   add_subdirectory( 09_basic_shapes )
