@@ -53,7 +53,7 @@ Qt5 or Qt6 and a C++20 compliant compiler
 ## Install dependencies:
 In a command line type:
 ```bash
-sudo apt install qt5base-dev git cmake build-essential
+sudo apt install qtbase5-dev git cmake build-essential
 ````
 ## (Optional): Clone git repository, compile and install
 ```bash
