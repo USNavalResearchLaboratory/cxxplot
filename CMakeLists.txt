@@ -193,7 +193,7 @@ configure_package_config_file(
   )
 
 write_basic_package_version_file(
- ${CMAKE_BINARY_DIR}/cmake/cxxplotConfigVersion.cmake
+ ${CMAKE_CURRENT_BINARY_DIR}/cmake/cxxplotConfigVersion.cmake
  VERSION ${cxxplot_VERSION}
  COMPATIBILITY SameMajorVersion
 )
@@ -217,8 +217,8 @@ install(EXPORT cxxplotTargets
 
 install(
   FILES
-    ${CMAKE_BINARY_DIR}/cmake/cxxplotConfig.cmake
-    ${CMAKE_BINARY_DIR}/cmake/cxxplotConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/cmake/cxxplotConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/cmake/cxxplotConfigVersion.cmake
   DESTINATION
     ${CMAKE_INSTALL_LIBDIR}/cmake/${CXXPLOT_DIR_WITH_VERSION}
   )
