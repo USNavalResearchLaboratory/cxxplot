@@ -46,7 +46,7 @@ else()
   set( CXXPLOT_NOT_SUBPROJECT OFF )
 endif()
 
-set( cxxplot_VERSION 0.3.0 )
+set( cxxplot_VERSION 0.3.1 )
 
 project( cxxplot VERSION ${cxxplot_VERSION} )
 
