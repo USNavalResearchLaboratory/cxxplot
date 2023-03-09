@@ -682,7 +682,7 @@ QCPPaintBufferPixmap::~QCPPaintBufferPixmap()
 QCPPainter *QCPPaintBufferPixmap::startPainting()
 {
   QCPPainter *result = new QCPPainter(&mBuffer);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0) //https://github.com/qt/qtbase/blob/9db7cc79a26ced4997277b5c206ca15949133240/dist/changes-5.14.0
   result->setRenderHint(QPainter::HighQualityAntialiasing);
 #endif
   return result;
@@ -772,7 +772,9 @@ QCPPainter *QCPPaintBufferGlPbuffer::startPainting()
   }
   
   QCPPainter *result = new QCPPainter(mGlPBuffer);
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0) //https://github.com/qt/qtbase/blob/9db7cc79a26ced4997277b5c206ca15949133240/dist/changes-5.14.0
   result->setRenderHint(QPainter::HighQualityAntialiasing);
+#endif
   return result;
 }
 
@@ -884,7 +886,7 @@ QCPPainter *QCPPaintBufferGlFbo::startPainting()
     context->makeCurrent(context->surface());
   mGlFrameBuffer->bind();
   QCPPainter *result = new QCPPainter(paintDevice.data());
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0) //https://github.com/qt/qtbase/blob/9db7cc79a26ced4997277b5c206ca15949133240/dist/changes-5.14.0
   result->setRenderHint(QPainter::HighQualityAntialiasing);
 #endif
   return result;
@@ -15488,7 +15490,7 @@ void QCustomPlot::paintEvent(QPaintEvent *event)
   QCPPainter painter(this);
   if (painter.isActive())
   {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0) //https://github.com/qt/qtbase/blob/9db7cc79a26ced4997277b5c206ca15949133240/dist/changes-5.14.0
   painter.setRenderHint(QPainter::HighQualityAntialiasing); // to make Antialiasing look good if using the OpenGL graphicssystem
 #endif
     if (mBackgroundBrush.style() != Qt::NoBrush)
