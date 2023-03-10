@@ -81,7 +81,7 @@ Add the following to your cmake file:
 FetchContent_Declare(
   cxxplot
   GIT_REPOSITORY https://github.com/USNavalResearchLaboratory/cxxplot.git
-  GIT_TAG        v0.2.1
+  GIT_TAG        v0.3.2
 )
 FetchContent_MakeAvailable(cxxplot)
 ...
