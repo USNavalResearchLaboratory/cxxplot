@@ -1,6 +1,7 @@
 #include "cxxplot/range.hpp"
 
 #include <algorithm>
+#include <utility>
 
 namespace cxxplot
 {
