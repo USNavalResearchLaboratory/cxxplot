@@ -36,8 +36,8 @@ window_proxy::window_proxy( const bool& show )
     plot_widget_->resize( 640, 480 );
 
     // TODO: Update the range after interaction
-    plot_widget_->setInteraction(QCP::iRangeDrag, true);
-    plot_widget_->setInteraction(QCP::iRangeZoom, true );
+    plot_widget_->setInteraction( QCP::iRangeDrag, true );
+    plot_widget_->setInteraction( QCP::iRangeZoom, true );
 
     if ( show )
     {
@@ -54,8 +54,7 @@ window_proxy::window_proxy( const bool& show )
   }
 }
 
-
-window_proxy::window_proxy(QPointer< widget > plot_widget ) :
+window_proxy::window_proxy( QPointer< widget > plot_widget ) :
 
   plot_widget_( plot_widget )
 {
@@ -69,18 +68,18 @@ window_proxy::window_proxy( window_proxy&& other ) :
 window_proxy::~window_proxy( )
 {
   if ( plot_widget_ != nullptr && redraw_on_destroy )
-    {
-      // We may get some redundant redraws if we have many window_proxies. This shouldn't be a big
-      // concern but need to keep it in mind
+  {
+    // We may get some redundant redraws if we have many window_proxies. This shouldn't be a big
+    // concern but need to keep it in mind
     redraw( );
-    }
+  }
 }
 
-void window_proxy::set_open_gl(const bool &opengl, const bool experimental_warning)
+void window_proxy::set_open_gl( const bool& opengl, const bool experimental_warning )
 {
   valid_or_throw( );
 
-  invoke_blocking( [ this, opengl, experimental_warning ](  ) {
+  invoke_blocking( [ this, opengl, experimental_warning ]( ) {
     plot_widget_->set_open_gl( opengl, experimental_warning );
   } );
 }
@@ -152,9 +151,12 @@ void window_proxy::wait_redraw_to_finish( )
   plot_widget_->wait_redraw_to_finish( );
 }
 
-bool window_proxy::save(const std::string &name, const int &width, const int &height, const bool force_overwrite )
+bool window_proxy::save( const std::string& name,
+                         const int&         width,
+                         const int&         height,
+                         const bool         force_overwrite )
 {
-   valid_or_throw( );
+  valid_or_throw( );
 
   return plot_widget_->save( name, width, height, force_overwrite );
 }
@@ -178,7 +180,13 @@ void window_proxy::set_fonts_size( const double& s )
   f = plot_widget_->yAxis->labelFont( );
   f.setPointSizeF( qreal( s ) );
   plot_widget_->yAxis->setLabelFont( f );
-  // TODO: Additional elements below
+
+  if ( plot_widget_->legend )
+  {
+    auto font = plot_widget_->legend->font( );
+    font.setPointSizeF( qreal( s ) );
+    plot_widget_->legend->setFont( font );
+  }
 }
 
 class figure& window_proxy::create_first_figure( )
@@ -260,7 +268,8 @@ bool window_proxy::get_show_legend( ) const
 }
 
 void window_proxy::set_show_legend( const bool& yesno )
-{ // This is a bit of a problem because legend should be a property of the figure. QCustomplot though
+{ // This is a bit of a problem because legend should be a property of the figure. QCustomplot
+  // though
   // has this a bit mixed.
   valid_or_throw( );
 
@@ -274,7 +283,7 @@ void window_proxy::set_legend_alignment( const alignment_t& a )
   plot_widget_->set_legend_alignment( a );
 }
 
-void window_proxy::set_legend_columns(const int &cols)
+void window_proxy::set_legend_columns( const int& cols )
 {
   valid_or_throw( );
 
