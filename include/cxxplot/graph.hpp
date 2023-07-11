@@ -34,9 +34,9 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// NOTICE OF THIRD-PARTY SOFTWARE LICENSES. This software uses open source software packages from third
-// parties. These are available on an "as is" basis and subject to their individual license agreements.
-// Additional information can be found in the provided "licenses" folder.
+// NOTICE OF THIRD-PARTY SOFTWARE LICENSES. This software uses open source software packages from
+// third parties. These are available on an "as is" basis and subject to their individual license
+// agreements. Additional information can be found in the provided "licenses" folder.
 
 #pragma once
 
@@ -79,29 +79,30 @@ public:
 
   void set_data( const QVector< double >& x, const QVector< double >& y );
 
-  template <class Container1_t, class Container2_t >
-  void set_data( const Container1_t &Xs, const Container2_t &Ys )
+  template< class Container1_t, class Container2_t >
+  void set_data( const Container1_t& Xs, const Container2_t& Ys )
   {
-    // Although we are making copies here, this is faster than not, because of the different threads.
+    // Although we are making copies here, this is faster than not, because of the different
+    // threads.
     QVector< double > xs;
     xs.reserve( int( Xs.size( ) ) );
-    for ( const auto &x: Xs)
+    for ( const auto& x : Xs )
     {
       xs.push_back( x );
     }
 
     QVector< double > ys;
     ys.reserve( int( Ys.size( ) ) );
-    for ( const auto &y: Ys)
+    for ( const auto& y : Ys )
     {
       ys.push_back( y );
     }
 
-    set_data( xs, ys);
+    set_data( xs, ys );
   }
 
-  template <typename T>
-  void set_data( std::initializer_list<T> l )
+  template< typename T >
+  void set_data( std::initializer_list< T > l )
   {
     x_range_ = range { };
     y_range_ = range { };
@@ -162,11 +163,11 @@ public:
 
     for ( const auto& point : container )
     {
-      x.push_back( get_x(point) );
-      x_range_.expand( get_x(point) );
+      x.push_back( get_x( point ) );
+      x_range_.expand( get_x( point ) );
 
-      y.push_back( get_y(point) );
-      y_range_.expand( get_y(point) );
+      y.push_back( get_y( point ) );
+      y_range_.expand( get_y( point ) );
     }
 
     set_data( x, y );
@@ -203,10 +204,8 @@ public:
     }
   }
 
-  void set_line_width( qreal width );
-  detail::setter< qreal > line_width { [ this ]( const qreal& t ) {
-    set_line_width( t );
-  } };
+  void                    set_line_width( qreal width );
+  detail::setter< qreal > line_width { [ this ]( const qreal& t ) { set_line_width( t ); } };
 
   void set_marker_size( qreal width );
 
@@ -230,8 +229,13 @@ public:
 
   detail::setter< color::rgb > color { [ this ]( const color::rgb& c ) { set_color( c ); } };
 
-  void                           set_name( std::string name );
+  void                                 set_name( std::string name );
   detail::setter< const std::string& > name { [ this ]( const std::string& n ) { set_name( n ); } };
+
+  void                          set_visible_in_legend( const bool& visible_in_legend );
+  detail::setter< const bool& > visible_in_legend { [ this ]( const bool& b ) {
+    set_visible_in_legend( b );
+  } };
 
   const struct range& x_range( ) const;
 
@@ -262,6 +266,8 @@ inline const named_parameter marker_style_ { &graph::setMarkerStyle };
 inline const named_parameter marker_line_width_ { &graph::set_marker_line_width };
 
 inline const named_parameter name_ { &graph::set_name };
+
+inline const named_parameter visible_in_legend_ { &graph::set_visible_in_legend };
 
 }
 

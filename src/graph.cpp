@@ -9,7 +9,7 @@
 
 cxxplot_WARNOFF
 #include "qcustomplot.h"
-cxxplot_WARNON
+  cxxplot_WARNON
 
 #include <iostream>
 
@@ -186,9 +186,21 @@ cxxplot_WARNON
   void graph::set_name( std::string n ) // TODO: We need a copy here. Check out why
   {
     auto str = QString::fromStdString( n );
-    invoke_blocking( [ this, str ]( ) {
-      QCPGraph_->setName(str );
-    });
+    invoke_blocking( [ this, str ]( ) { QCPGraph_->setName( str ); } );
+  }
+
+  void graph::set_visible_in_legend( const bool& visible_in_legend )
+  {
+    invoke_blocking( [ this, visible_in_legend ]( ) {
+      if ( visible_in_legend )
+      {
+        QCPGraph_->addToLegend( );
+      }
+      else
+      {
+        QCPGraph_->removeFromLegend( );
+      }
+    } );
   }
 
   const struct range& graph::x_range( ) const
@@ -201,9 +213,9 @@ cxxplot_WARNON
     return y_range_;
   }
 
-  int graph::data_size() const
+  int graph::data_size( ) const
   {
-    return QCPGraph_->data()->size();
+    return QCPGraph_->data( )->size( );
   }
 
   QPointer< widget > graph::plot_window( )
@@ -211,5 +223,3 @@ cxxplot_WARNON
     return parent_figure_->plot_widget( );
   }
 }
-
-
