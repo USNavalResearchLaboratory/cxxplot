@@ -5,11 +5,11 @@
 </div>
 
 # cxxplot: A C++ plotting library
-cxxplot is a C++ plotting library meant to be used in science, engineering and data analysis. The main objectives of the project are:
+cxxplot is a C++ plotting library meant to be used in science, engineering, and data analysis. The main objectives of the project are:
 1. Provide syntax that is familiar to scientists and engineers.
 2. Enable low setup times.
 2. Be more performant than typical plotting libraries.
-4. Operate in asynchronous mode. Therefore plot calls and user code can be combined and still retain GUI interactivity. 
+4. Operate in asynchronous mode. Therefore plot calls and user code can be combined and retain GUI interactivity. 
 
 ## Basic example
 ```c++
@@ -51,7 +51,7 @@ Qt5 or Qt6 and a C++20 compliant compiler
 ```
 # Ubuntu Linux
 ## Install dependencies:
-In a command line type:
+In a command line, type:
 ```bash
 sudo apt install qtbase5-dev git cmake build-essential
 ````
@@ -69,11 +69,11 @@ sudo make install
 The following snippet will allow linking to cxxplot v 0.2.1 and above:
 ```cmake
 ...
-find_package( cxxplot 0.4.0 REQUIRED ) # Modify the version or omit the version altogether
+find_package( cxxplot 0.4.1 REQUIRED ) # Modify the version or omit the version altogether
 ...
 target_link_libraries( mytarget PRIVATE cxxplot::cxxplot )
 ```
-A full standalone example, that can be also used as a starting point can be found in [101_cmake_setup1](examples/101_cmake_setup1).
+A complete standalone example that can be used as a starting point can be found in [101_cmake_setup1](examples/101_cmake_setup1).
 
 ## Automatic integration using CMake's FetchContent (will download and compile on demand)
 Add the following to your cmake file:
@@ -81,7 +81,7 @@ Add the following to your cmake file:
 FetchContent_Declare(
   cxxplot
   GIT_REPOSITORY https://github.com/USNavalResearchLaboratory/cxxplot.git
-  GIT_TAG        v0.4.0
+  GIT_TAG        v0.4.1
 )
 FetchContent_MakeAvailable(cxxplot)
 ...
