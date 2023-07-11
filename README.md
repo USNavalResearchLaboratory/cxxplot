@@ -73,7 +73,7 @@ find_package( cxxplot 0.4.1 REQUIRED ) # Modify the version or omit the version 
 ...
 target_link_libraries( mytarget PRIVATE cxxplot::cxxplot )
 ```
-A complete standalone example that can be used as a starting point can be found in [101_cmake_setup1](examples/101_cmake_setup1).
+A complete standalone example that can be used as a starting point can be found in [101_cmake_setup1](examples/81_cmake_setup1).
 
 ## Automatic integration using CMake's FetchContent (will download and compile on demand)
 Add the following to your cmake file:
