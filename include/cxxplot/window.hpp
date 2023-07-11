@@ -388,8 +388,7 @@ cxxplot_WARNOFF
     return window_proxy( std::forward< Arg0 >( arg0 ), std::forward< Args >( args )... );
   }
 
-  template< typename... Args >
-  window_proxy plot( const bool show = true )
+inline window_proxy plot( const bool &show = true )
   {
     return window_proxy( show );
   }

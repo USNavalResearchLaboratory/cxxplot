@@ -62,9 +62,9 @@ int main( int argc, char *argv[] )
       auto path = std::filesystem::current_path( );
       path /= "line_color_order.pdf";
 
-      w.save( path );
+      w.save( path.string() );
 
-      std::cout << "Plot saved in:\n" << path.c_str() << std::endl;
+      std::cout << "Plot saved in:\n" << path.string() << std::endl;
     }
     catch ( std::exception &e )
     {

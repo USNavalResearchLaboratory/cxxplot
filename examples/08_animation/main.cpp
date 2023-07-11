@@ -8,26 +8,27 @@
 
 namespace plt = cxxplot;
 
-template <class F>
-auto lazy_func_data( F &&f, const double x0, const double xn, const std::size_t num_points = 100 )
+template< class F >
+auto lazy_func_data( F&& f, const double x0, const double xn, const std::size_t num_points = 100 )
 {
   using namespace std::ranges;
 
   double scale = ( xn - x0 ) / ( num_points - 1 );
 
-// clang-format off
+  // clang-format off
   return
       iota_view{ std::size_t( 0 ), num_points } |
-      std::ranges::views::transform( [f, x0, scale]( const int &i ) { return f( x0 + scale*i ); } );
-// clang-format on
+      std::ranges::views::transform( [f, x0, scale]( const auto &i ) { return f( x0 + scale*i ); } );
+  // clang-format on
 }
 
-int main( int argc, char *argv[] )
+int main( int argc, char* argv[] )
 {
-  return plt::exec( argc, argv, [&]( ) {
+  return plt::exec( argc, argv, [ & ]( ) {
     using namespace plt::named_parameters;
     using namespace std::ranges;
     using namespace std::numbers;
+    using namespace std::chrono;
 
     // clang-format off
 
@@ -38,12 +39,12 @@ int main( int argc, char *argv[] )
     const int n = 2000;
 
     auto fx =[x]( const double &a ) {
-        return lazy_func_data( [a,x]( auto t ) { return x( t, a ); } , 0, 2*pi, n  );
+        return lazy_func_data( [a,x]( auto t ) { return x( t, a ); } , 0, 2.0*pi, n  );
       };
 
     auto fy =[y]( const double &a )
     {
-        return lazy_func_data( [a,y]( auto t ) { return y( t, a ); } , 0, 2*pi, n  );
+        return lazy_func_data( [a,y]( auto t ) { return y( t, a ); } , 0, 2.0*pi, n  );
     };
 
     const auto a = 35.0;
@@ -64,11 +65,11 @@ int main( int argc, char *argv[] )
     double duration = 0;
     for (auto i = 1 ; i != 10000; i++)
     {
-      auto start = std::chrono::steady_clock::now();
+      auto start = steady_clock::now();
       g.set_data( fx( a + i*0.005 ), fy( a + i*0.005 ) );
-      auto finish = std::chrono::steady_clock::now();
+      auto finish = steady_clock::now();
 
-      auto t = double(std::chrono::duration_cast<std::chrono::microseconds>( finish - start ).count()) / 1.0e6;
+      auto t = double(duration_cast<microseconds>( finish - start ).count()) / 1.0e6;
       duration +=t;
       frames++;
       if ( duration > 0.5 )
@@ -80,7 +81,6 @@ int main( int argc, char *argv[] )
           frames = 0;
         }
     }
-
 
     // clang-format on
 
