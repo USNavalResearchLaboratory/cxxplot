@@ -54,11 +54,6 @@ public:
 
   double x = 0.0;
   double y = 0.0;
-
-  inline double squaredNorm( )
-  {
-    return x * x + y * y;
-  }
 };
 
 } // namespace cxxplot

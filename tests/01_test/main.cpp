@@ -31,10 +31,6 @@ public:
   {
     return y_;
   }
-  double squaredNorm( )
-  {
-    return x( ) * x( ) + y( ) * y( );
-  }
 
 private:
   double x_ = 0.0;
