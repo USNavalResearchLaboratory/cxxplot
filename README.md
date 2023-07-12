@@ -55,12 +55,12 @@ In a command line, type:
 sudo apt install qtbase5-dev git cmake build-essential
 ````
 ### Windows 
-Download and install a version of the Qt SDK. You can either use the MinGW compiler packaged with Qt or alternatively also install MSVC 2022.
+Download and install a version of the Qt SDK. You can either use the MinGW compiler packaged with Qt or also install MSVC 2022.
 
 # Compiling from source
 This is an optional step.
 
-The standard way of using cxxplot is by integrating it into a CMake project using FetchContent (see the section [below](#Automatic-integration-using-CMake-FetchContent).  If, on the other hand, you plan to share the library between multiple projects, you may want to compile and install it by using the following terminal commands:
+The standard way of using cxxplot is by integrating it into a CMake project using FetchContent (see the [relevant section below](#Automatic-integration-using-CMake-FetchContent)). If, on the other hand, you plan to share the library between multiple projects, you may want to compile and install it by using the following terminal commands:
 ```bash
 git clone https://github.com/USNavalResearchLaboratory/cxxplot.git
 mkdir cxxplotbuild && cd cxxplotbuild
@@ -71,7 +71,7 @@ sudo make install
 
 # Using
 ## Automatic integration using CMake FetchContent
-This is generally the way we use cxxplot, which automatically downloads, compiles, and uses the library. 
+This is generally how we use cxxplot, which automatically downloads, compiles, and uses the library. 
 
 Add the following to your cmake file:
 ```cmake
@@ -91,18 +91,17 @@ FetchContent_MakeAvailable(cxxplot)
 target_link_libraries( mytargetname PRIVATE cxxplot::cxxplot )
 ```
 
-A complete standalone example that can be used as a starting point can be found in [101_cmake_fetchcontent](examples/101_cmake_fetchcontent).
+A standalone example that can be used as a starting point can be found in [101_cmake_fetchcontent](examples/101_cmake_fetchcontent).
 
 ## If installed in your system
-If cxxplot is installed in your system, by your system's package manager or by either following [these instructions](#Compiling-from-source), the following snippet will allow linking to cxxplot v 0.4.1 and above:
+Suppose cxxplot is installed in your system by your package manager or by following [these instructions](#Compiling-from-source). In that case, the following snippet will allow linking to cxxplot v 0.4.1 and above:
 ```cmake
 ...
 find_package( cxxplot 0.4.1 REQUIRED ) # Modify the version or omit the version altogether
 ...
 target_link_libraries( mytarget PRIVATE cxxplot::cxxplot )
 ```
-A complete standalone example that can be used as a starting point can be found in [102_cmake_findpackage](examples/102_cmake_findpackage).
-
+A standalone example that can be used as a starting point can be found in [102_cmake_findpackage](examples/102_cmake_findpackage).
 
 # Example plots
 <div align="center">
