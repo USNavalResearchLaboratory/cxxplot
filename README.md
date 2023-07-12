@@ -48,14 +48,14 @@ Output:
 ```
 Qt5 or Qt6 and a C++20 compliant compiler
 ```
-##Install dependencies:
-###Debian/Ubuntu:
+## Install dependencies:
+### Debian/Ubuntu:
 In a command line, type:
 ```bash
 sudo apt install qtbase5-dev git cmake build-essential
 ````
-###Windows 
-Download and install a version of the Qt SDK. You can either use the MinGW compiler packaged with Qt, or alternatively also install MSVC 2022.
+### Windows 
+Download and install a version of the Qt SDK. You can either use the MinGW compiler packaged with Qt or alternatively also install MSVC 2022.
 
 # Compiling:
 The standard way of using cxxplot is by integrating it into a CMake project using FetchContent (see the section [below](#Automatic-integration-using-CMake-FetchContent).  If, on the other hand, you plan to share the library between multiple projects, you may want to compile and install by using the following terminal commands:
