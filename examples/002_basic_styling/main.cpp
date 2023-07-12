@@ -24,14 +24,14 @@ int main( int argc, char* argv[] )
                window_size_  = { 800, 600 },
 
                line_color_rgb_ = { 255, 0, 0 },
-               line_width_ = 3.0,
+               line_width_     = 3.0,
 
                axes_line_width_ = 2.0,
-               fonts_size_          = 20.0,
+               fonts_size_      = 20.0,
 
-               marker_style_          = plt::MarkerStyle::Cross,
+               marker_style_      = plt::MarkerStyle::Cross,
                marker_line_width_ = 3.0,
-               marker_size_           = 12.0,
+               marker_size_       = 12.0,
 
                xlim_ = { -11, 11 },
                ylim_ = { -10, 110 } );

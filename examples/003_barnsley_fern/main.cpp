@@ -26,7 +26,6 @@ int main( int argc, char* argv[] )
                         ylim_              = { -260, 150 },
                         axes_aspect_ratio_ = 0.65 );
 
-
     auto& graph = w.figure( 0 ).graph( 0 );
 
     std::random_device                       rd;

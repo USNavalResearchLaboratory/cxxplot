@@ -8,23 +8,23 @@
 
 namespace plt = cxxplot;
 
-struct point2d_t
+struct my_point2d_t
 {
-  double myx = 0.0;
-  double myy = 0.0;
+  double my_x = 0.0;
+  double my_y = 0.0;
 };
 
-// Provide an overload for get_x, get_y functions. TODO: Make this valid only in cxxplot namespace?
-const double &get_x( const point2d_t & p ) {  return p.myx; }
-const double &get_y( const point2d_t & p ) {  return p.myy; }
+// Provide an overload for get_x, get_y functions so that cxxplot can get the values.
+const double &get_x( const my_point2d_t & p ) {  return p.my_x; }
+const double &get_y( const my_point2d_t & p ) {  return p.my_y; }
 
 auto rect( double xcen, double ycen, double width, double height )
 {
-  return std::array{point2d_t{xcen - width / 2.0, ycen - height / 2.0},
-                    point2d_t{xcen + width / 2.0, ycen - height / 2.0},
-                    point2d_t{xcen + width / 2.0, ycen + height / 2.0},
-                    point2d_t{xcen - width / 2.0, ycen + height / 2.0},
-                    point2d_t{xcen - width / 2.0, ycen - height / 2.0}};
+  return std::array{my_point2d_t{xcen - width / 2.0, ycen - height / 2.0},
+                      my_point2d_t{xcen + width / 2.0, ycen - height / 2.0},
+                      my_point2d_t{xcen + width / 2.0, ycen + height / 2.0},
+                      my_point2d_t{xcen - width / 2.0, ycen + height / 2.0},
+                      my_point2d_t{xcen - width / 2.0, ycen - height / 2.0}};
 }
 
 int main( int argc, char *argv[] )
