@@ -93,8 +93,8 @@ target_link_libraries( mytargetname PRIVATE cxxplot::cxxplot )
 
 A standalone example that can be used as a starting point can be found in [101_cmake_fetchcontent](examples/101_cmake_fetchcontent).
 
-## If installed in your system
-Suppose cxxplot is installed in your system by your package manager or by following [these instructions](#Compiling-from-source). In this case, the following snippet will allow linking to cxxplot v 0.4.1 and above:
+## If cxxplot is installed in your system
+If cxxplot is installed in your system by your package manager or by following [these instructions](#Compiling-from-source), the following snippet will allow linking to cxxplot v 0.4.1 and above:
 ```cmake
 ...
 find_package( cxxplot 0.4.1 REQUIRED ) # Modify the version or omit the version altogether
