@@ -71,9 +71,9 @@ sudo make install
 
 # Using
 ## Automatic integration using CMake FetchContent
-This is generally how we use cxxplot, which automatically downloads, compiles, and uses the library. 
+This is generally how we use cxxplot, which automatically downloads, compiles, and links to the library. 
 
-Add the following to your cmake file:
+Add the following to your CMakeLists.txt file:
 ```cmake
 include( FetchContent )
 
