@@ -44,11 +44,8 @@ image::image( unsigned char*     data,
   update( data, width, height, bytes_per_line, format );
 }
 
-void image::update( unsigned char* data,
-                    const size_t&  width,
-                    const size_t&  height,
-                    const size_t&  bytes_per_line,
-                    const Format&  format )
+void image::update(
+  unsigned char* data, const size_t& width, const size_t& height, const size_t& bytes_per_line, const Format& format )
 {
   QImage image_view( data, width, height, bytes_per_line, toQImageFormat( format ) );
 
@@ -63,7 +60,6 @@ void image::update( unsigned char* data,
   qcp_item_pixmap_->bottomRight->setCoords( pixmap_size.width( ), pixmap_size.height( ) );
   // TODO: Expose the options here.
   qcp_item_pixmap_->setScaled( true, Qt::KeepAspectRatio, Qt::FastTransformation );
-
 
   parent_figure_->handle_updated_visual_items( );
 }

@@ -3,9 +3,9 @@
 
 cxxplot_WARNOFF
 #include <QDir>
+#include <QMessageBox>
 #include <QThread>
 #include <QWindow>
-#include <QMessageBox>
   cxxplot_WARNON;
 
 #include <iostream>
@@ -16,43 +16,40 @@ cxxplot_WARNOFF
 class Application : public QApplication
 {
 public:
-
-  Application( int &argc, char **argv ) :
-    QApplication( argc, argv )
+  Application( int& argc, char** argv ) : QApplication( argc, argv )
   {
   }
 
-  bool notify(QObject *receiver_, QEvent *event_) override
+  bool notify( QObject* receiver_, QEvent* event_ ) override
   {
     QString error;
 
     try
     {
-      return QApplication::notify(receiver_, event_);
+      return QApplication::notify( receiver_, event_ );
     }
-    catch ( std::exception &e )
+    catch ( std::exception& e )
     {
-      error = e.what();
+      error = e.what( );
     }
     catch ( ... )
     {
       error = "Unspecified error";
     }
 
-    if ( !error.isEmpty() )
+    if ( !error.isEmpty( ) )
     {
       QMessageBox msgBox;
 
-      msgBox.setWindowTitle( applicationName() );
+      msgBox.setWindowTitle( applicationName( ) );
 
-      msgBox.setText( QString( "Error: " ) + error + "\nClosing..."  );
-      msgBox.exec();
+      msgBox.setText( QString( "Error: " ) + error + "\nClosing..." );
+      msgBox.exec( );
 
-      QApplication::quit();
+      QApplication::quit( );
     }
     return false;
   }
-
 };
 
 inline void initImageResources( )
@@ -206,8 +203,7 @@ void invoke_blocking( std::function< void( ) > f )
 
     Application::postEvent( &inv, new QEvent( QEvent::User ) );
 
-    inv.until_done.wait(
-      lk, [ &inv]( ) -> const auto& { return inv.executed( ); } );
+    inv.until_done.wait( lk, [ &inv ]( ) -> const auto& { return inv.executed( ); } );
   }
 }
 
@@ -221,9 +217,7 @@ void invoke_nonblocking( std::function< void( ) > f, QObject* parent )
   new async_invoker( std::move( f ), parent ); // Will destroy itself when finished
 }
 
-void cxxplot::experimental::gui_thread::init( int&        argc,
-                                              char*       argv[],
-                                              const bool& portability_warning )
+void cxxplot::experimental::gui_thread::init( int& argc, char* argv[], const bool& portability_warning )
 {
   if ( portability_warning )
   {

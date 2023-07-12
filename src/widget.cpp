@@ -18,10 +18,8 @@ widget::widget( QWidget* parent ) : QCustomPlot( parent )
 
   setContextMenuPolicy( Qt::CustomContextMenu );
 
-  connect( this,
-           SIGNAL( customContextMenuRequested( const QPoint& ) ),
-           this,
-           SLOT( showContextMenu( const QPoint& ) ) );
+  connect(
+    this, SIGNAL( customContextMenuRequested( const QPoint& ) ), this, SLOT( showContextMenu( const QPoint& ) ) );
 
   connect( this, SIGNAL( afterReplot( ) ), this, SLOT( handle_after_replot( ) ) );
 
@@ -42,8 +40,7 @@ void widget::set_open_gl( const bool& opengl, const bool& experimental_warning )
 
   if ( opengl && !this->openGl( ) )
   {
-    std::cerr << "cxxplot warning: Could not use OpenGL acceleration. Using software rendering"
-              << std::endl;
+    std::cerr << "cxxplot warning: Could not use OpenGL acceleration. Using software rendering" << std::endl;
   }
 }
 void widget::redraw_if_auto_redraw( )
@@ -225,20 +222,16 @@ bool cxxplot::widget::save( const std::string& file_name,
   bool ret = false;
 
   invoke_blocking( [ this, &ret, file_name, width, height, force_overwrite ] {
-
-
-
     auto fname = QString::fromStdString( file_name );
 
     QFileInfo fi( fname );
 
     if ( !force_overwrite && fi.exists( ) )
     {
-      auto response
-        = QMessageBox::warning( this,
-                                tr( "cxxplot" ),
-                                tr( "File %1 exists. Overwrite?" ).arg( fi.absoluteFilePath( ) ),
-                                QMessageBox::Yes | QMessageBox::No );
+      auto response = QMessageBox::warning( this,
+                                            tr( "cxxplot" ),
+                                            tr( "File %1 exists. Overwrite?" ).arg( fi.absoluteFilePath( ) ),
+                                            QMessageBox::Yes | QMessageBox::No );
 
       if ( response == QMessageBox::No )
       {
@@ -270,11 +263,10 @@ bool cxxplot::widget::save( const std::string& file_name,
       return;
     }
 
-    QMessageBox::warning(
-      this,
-      tr( "cxxplot" ),
-      tr( "Please provide the export file type extension (.pdf, .jpg, .bmp, or .png)" ),
-      QMessageBox::Ok );
+    QMessageBox::warning( this,
+                          tr( "cxxplot" ),
+                          tr( "Please provide the export file type extension (.pdf, .jpg, .bmp, or .png)" ),
+                          QMessageBox::Ok );
 
     ret = false;
   } );
@@ -296,10 +288,8 @@ void widget::save( )
 
   if ( !save( file_name.toStdString( ), 0, 0, overwrite ) )
   {
-    QMessageBox::warning( this,
-                          tr( "cxxplot" ),
-                          tr( "Could not save to file: \n%1" ).arg( file_name ),
-                          QMessageBox::Ok );
+    QMessageBox::warning(
+      this, tr( "cxxplot" ), tr( "Could not save to file: \n%1" ).arg( file_name ), QMessageBox::Ok );
   }
 }
 

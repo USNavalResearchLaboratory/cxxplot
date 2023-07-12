@@ -214,7 +214,7 @@ public:
 
   operator R( )
   {
-    return value();
+    return value( );
   }
 
   getter_setter& operator=( value_type&& v )
@@ -265,8 +265,7 @@ private:
 
   getter_f_t getter_;
 
-  std::unique_ptr< value_type >
-    this_value_; // A pointer so we don't construct large object when we don't need to.
+  std::unique_ptr< value_type > this_value_; // A pointer so we don't construct large object when we don't need to.
 
   std::unique_ptr< value_type > return_value_;
 };

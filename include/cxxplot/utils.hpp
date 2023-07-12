@@ -50,14 +50,13 @@
 #define cxxplot_FILENAME ( strrchr( __FILE__, '/' ) ? strrchr( __FILE__, '/' ) + 1 : __FILE__ )
 #endif
 
-#define cxxplot_SOURCE_LOCATION_CURRENT                                                            \
-  cxxplot::source_location                                                                         \
-  {                                                                                                \
-    cxxplot_FILENAME, __LINE__                                                                     \
+#define cxxplot_SOURCE_LOCATION_CURRENT                                                                                \
+  cxxplot::source_location                                                                                             \
+  {                                                                                                                    \
+    cxxplot_FILENAME, __LINE__                                                                                         \
   }
 
-#define cxxplot_cerr_SOURCE_LOCATION_CURRENT                                                       \
-  std::cerr << cxxplot_SOURCE_LOCATION_CURRENT << std::endl;
+#define cxxplot_cerr_SOURCE_LOCATION_CURRENT std::cerr << cxxplot_SOURCE_LOCATION_CURRENT << std::endl;
 
 #ifdef _MSC_VER
 
@@ -68,11 +67,10 @@
 #else
 
 #define CXXPLOT_STRINGIFY( a ) #a
-#define cxxplot_WARNOFF                                                                            \
-  _Pragma( CXXPLOT_STRINGIFY( GCC diagnostic push ) )                                              \
-  _Pragma( CXXPLOT_STRINGIFY( GCC diagnostic ignored "-Wall" ) )                                   \
-  _Pragma( "GCC diagnostic ignored \"-Wdeprecated-enum-enum-conversion\"" )                        \
-  _Pragma( "GCC diagnostic ignored \"-Wimplicit-fallthrough\"" )
+#define cxxplot_WARNOFF                                                                                                \
+  _Pragma( CXXPLOT_STRINGIFY( GCC diagnostic push ) ) _Pragma( CXXPLOT_STRINGIFY( GCC diagnostic ignored "-Wall" ) )   \
+    _Pragma( "GCC diagnostic ignored \"-Wdeprecated-enum-enum-conversion\"" )                                          \
+      _Pragma( "GCC diagnostic ignored \"-Wimplicit-fallthrough\"" )
 
 #define cxxplot_WARNON _Pragma( CXXPLOT_STRINGIFY( GCC diagnostic pop ) )
 #endif
@@ -117,19 +115,18 @@ private:
   std::stringstream ss;
 };
 
-std::vector<std::string> split_string(const std::string &             str,
-                                       const std::string &delimiters );
+std::vector< std::string > split_string( const std::string& str, const std::string& delimiters );
 
-std::vector< std::vector< double > > read_delimited(const std::string& filename,
+std::vector< std::vector< double > > read_delimited( const std::string& filename,
                                                      const std::string  delimeters          = ",",
                                                      bool               first_row_as_header = false,
                                                      const std::size_t  R0                  = 0,
-                                                     const std::size_t  = 0);
+                                                     const std::size_t                      = 0 );
 
-std::vector< std::vector< double > > read_csv(const std::string& filename,
-                                               bool               first_row_as_header  = false,
-                                               const std::size_t  R0                   = 0,
-                                               const std::size_t  C1                   = 0);
+std::vector< std::vector< double > > read_csv( const std::string& filename,
+                                               bool               first_row_as_header = false,
+                                               const std::size_t  R0                  = 0,
+                                               const std::size_t  C1                  = 0 );
 
 }
 

@@ -42,15 +42,14 @@
 
 cxxplot_WARNOFF
 #include "qcustomplot.h"
-cxxplot_WARNON
+  cxxplot_WARNON
 
 #include <cxxplot/styles.hpp>
 
-namespace cxxplot
+  namespace cxxplot
 {
 
-QCPScatterStyle::ScatterShape toQCPScatterShape( const MarkerStyle &markerStyle );
+  QCPScatterStyle::ScatterShape toQCPScatterShape( const MarkerStyle& markerStyle );
 
-Qt::PenStyle to_qt_pen_style( const LineStyle &line_style );
-
+  Qt::PenStyle to_qt_pen_style( const LineStyle& line_style );
 }

@@ -53,40 +53,40 @@ struct type_traits
 } // namespace detail
 } // namespace cxxplot
 
-#define cxxplot_ADAPT_POINT( TYPENAME, VALUETYPE, XACCESS, YACCESS )                               \
-  template<>                                                                                       \
-  struct cxxplot::detail::type_traits< TYPENAME >                                                  \
-  {                                                                                                \
-    using value_type = VALUETYPE;                                                                  \
-    static constexpr bool isPoint( )                                                               \
-    {                                                                                              \
-      return true;                                                                                 \
-    }                                                                                              \
-    static constexpr bool isPointsContainer( )                                                     \
-    {                                                                                              \
-      return false;                                                                                \
-    }                                                                                              \
-    static const double& getX( const TYPENAME& v )                                                 \
-    {                                                                                              \
-      return v.XACCESS;                                                                            \
-    }                                                                                              \
-    static const double& getY( const TYPENAME& v )                                                 \
-    {                                                                                              \
-      return v.YACCESS;                                                                            \
-    }                                                                                              \
+#define cxxplot_ADAPT_POINT( TYPENAME, VALUETYPE, XACCESS, YACCESS )                                                   \
+  template<>                                                                                                           \
+  struct cxxplot::detail::type_traits< TYPENAME >                                                                      \
+  {                                                                                                                    \
+    using value_type = VALUETYPE;                                                                                      \
+    static constexpr bool isPoint( )                                                                                   \
+    {                                                                                                                  \
+      return true;                                                                                                     \
+    }                                                                                                                  \
+    static constexpr bool isPointsContainer( )                                                                         \
+    {                                                                                                                  \
+      return false;                                                                                                    \
+    }                                                                                                                  \
+    static const double& getX( const TYPENAME& v )                                                                     \
+    {                                                                                                                  \
+      return v.XACCESS;                                                                                                \
+    }                                                                                                                  \
+    static const double& getY( const TYPENAME& v )                                                                     \
+    {                                                                                                                  \
+      return v.YACCESS;                                                                                                \
+    }                                                                                                                  \
   };
 
-#define cxxplot_ADAPT_POINTS_CONTAINER( TYPENAME, VALUETYPE )                                      \
-  template<>                                                                                       \
-  struct cxxplot::detail::type_traits< TYPENAME >                                                  \
-  {                                                                                                \
-    using value_type = VALUETYPE;                                                                  \
-    static constexpr bool isPoint( )                                                               \
-    {                                                                                              \
-      return false;                                                                                \
-    }                                                                                              \
-    static constexpr bool isPointsContainer( )                                                     \
-    {                                                                                              \
-      return true;                                                                                 \
-    }                                                                                              \
+#define cxxplot_ADAPT_POINTS_CONTAINER( TYPENAME, VALUETYPE )                                                          \
+  template<>                                                                                                           \
+  struct cxxplot::detail::type_traits< TYPENAME >                                                                      \
+  {                                                                                                                    \
+    using value_type = VALUETYPE;                                                                                      \
+    static constexpr bool isPoint( )                                                                                   \
+    {                                                                                                                  \
+      return false;                                                                                                    \
+    }                                                                                                                  \
+    static constexpr bool isPointsContainer( )                                                                         \
+    {                                                                                                                  \
+      return true;                                                                                                     \
+    }                                                                                                                  \
   };

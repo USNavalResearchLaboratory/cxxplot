@@ -34,9 +34,9 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// NOTICE OF THIRD-PARTY SOFTWARE LICENSES. This software uses open source software packages from third
-// parties. These are available on an "as is" basis and subject to their individual license agreements.
-// Additional information can be found in the provided "licenses" folder.
+// NOTICE OF THIRD-PARTY SOFTWARE LICENSES. This software uses open source software packages from
+// third parties. These are available on an "as is" basis and subject to their individual license
+// agreements. Additional information can be found in the provided "licenses" folder.
 
 #pragma once
 
@@ -50,55 +50,47 @@ namespace color
 
 struct rgb
 {
-  rgb( const uint8_t &red, const uint8_t &green, const uint8_t &blue );
+  rgb( const uint8_t& red, const uint8_t& green, const uint8_t& blue );
 
   uint8_t r = 0;
   uint8_t g = 0;
   uint8_t b = 0;
 };
 
-inline auto black   = rgb{0, 0, 0};
-inline auto white   = rgb{255, 255, 255};
-inline auto red     = rgb{255, 0, 0};
-inline auto green   = rgb{0, 255, 0};
-inline auto blue    = rgb{0, 0, 255};
-inline auto magenta = rgb{255, 0, 255};
-inline auto cyan    = rgb{0, 255, 255};
-inline auto yellow  = rgb{255, 255, 0};
+inline auto black   = rgb { 0, 0, 0 };
+inline auto white   = rgb { 255, 255, 255 };
+inline auto red     = rgb { 255, 0, 0 };
+inline auto green   = rgb { 0, 255, 0 };
+inline auto blue    = rgb { 0, 0, 255 };
+inline auto magenta = rgb { 255, 0, 255 };
+inline auto cyan    = rgb { 0, 255, 255 };
+inline auto yellow  = rgb { 255, 255, 0 };
 
 namespace navy
 {
-inline auto navy_blue = rgb{0, 31, 56};
-inline auto blue      = rgb{31, 140, 217};
-inline auto yellow    = rgb{232, 170, 0};
-inline auto grey      = rgb{197, 211, 211};
+inline auto navy_blue = rgb { 0, 31, 56 };
+inline auto blue      = rgb { 31, 140, 217 };
+inline auto yellow    = rgb { 232, 170, 0 };
+inline auto grey      = rgb { 197, 211, 211 };
 
 } // namespace navy
 
 namespace cxxplot
 {
-inline auto blue       = rgb{10, 40, 70};
+inline auto blue       = rgb { 10, 40, 70 };
 inline auto light_blue = navy::blue;
 inline auto yellow     = navy::yellow;
-inline auto grey       = rgb{117, 131, 131};
+inline auto grey       = rgb { 117, 131, 131 };
 inline auto light_grey = navy::grey;
-inline auto red        = rgb{190, 31, 20};
-inline auto brown      = rgb{97, 68, 12};
-inline auto orange     = rgb{255, 165, 0};
-inline auto green      = rgb{31, 150, 20};
+inline auto red        = rgb { 190, 31, 20 };
+inline auto brown      = rgb { 97, 68, 12 };
+inline auto orange     = rgb { 255, 165, 0 };
+inline auto green      = rgb { 31, 150, 20 };
 } // namespace cxxplot
 
-// clang-format off
-inline std::array default_order = {
-  cxxplot::light_blue,
-  cxxplot::red,
-  cxxplot::green,
-  black,
-  cxxplot::yellow,
-  cxxplot::brown,
-  cxxplot::grey
-};
-// clang-format on
+inline std::array default_order = { cxxplot::light_blue, cxxplot::red,   cxxplot::green, black,
+                                    cxxplot::yellow,     cxxplot::brown, cxxplot::grey };
+
 } // namespace color
 
 } // namespace cxxplot

@@ -71,9 +71,7 @@ cxxplot_WARNOFF
 
   class widget;
 
-  class window_proxy :
-    public QObject,
-    public named_parameters::supports_named_parameters< window_proxy >
+  class window_proxy : public QObject, public named_parameters::supports_named_parameters< window_proxy >
   {
     Q_OBJECT
 
@@ -90,18 +88,16 @@ cxxplot_WARNOFF
     window_proxy( Arg0&& arg0, Arg1&& arg1, Args&&... args ) : window_proxy( false )
     {
       // To resolve overload ambiguities
-      if constexpr ( BasicRealContainer< typename std::decay<
-                       Arg0 >::type > && BasicRealContainer< typename std::decay< Arg1 >::type > )
+      if constexpr ( BasicRealContainer< typename std::decay< Arg0 >::type >
+                     && BasicRealContainer< typename std::decay< Arg1 >::type > )
       {
-        init_with_two_containers( std::forward< Arg0 >( arg0 ),
-                                  std::forward< Arg1 >( arg1 ),
-                                  std::forward< Args >( args )... );
+        init_with_two_containers(
+          std::forward< Arg0 >( arg0 ), std::forward< Arg1 >( arg1 ), std::forward< Args >( args )... );
       }
       else
       {
-        init_with_one_container( std::forward< Arg0 >( arg0 ),
-                                 std::forward< Arg1 >( arg1 ),
-                                 std::forward< Args >( args )... );
+        init_with_one_container(
+          std::forward< Arg0 >( arg0 ), std::forward< Arg1 >( arg1 ), std::forward< Args >( args )... );
       }
     }
 
@@ -121,61 +117,46 @@ cxxplot_WARNOFF
     int                          get_min_redraw_interval( );
     void                         set_min_redraw_interval( int msec );
     detail::getter_setter< int > min_redraw_interval_ms {
-      [ this ]( ) { return get_min_redraw_interval( ); },
-      [ this ]( const int& ms ) { set_min_redraw_interval( ms ); }
+      [ this ]( ) { return get_min_redraw_interval( ); }, [ this ]( const int& ms ) { set_min_redraw_interval( ms ); }
     };
 
     std::string                          get_title( ) const;
     void                                 set_title( std::string title );
     detail::getter_setter< std::string > title { [ this ]( ) { return get_title( ); },
-                                                 [ this ]( const std::string& title ) {
-                                                   set_title( title );
-                                                 } };
+                                                 [ this ]( const std::string& title ) { set_title( title ); } };
 
     std::array< int, 2 >                          get_size( ) const;
     void                                          set_size( const int& width, const int& height );
-    detail::getter_setter< std::array< int, 2 > > size {
-      [ this ]( ) { return get_size( ); }, [ this ]( auto ar ) { set_size( ar[ 0 ], ar[ 1 ] ); }
-    };
+    detail::getter_setter< std::array< int, 2 > > size { [ this ]( ) { return get_size( ); },
+                                                         [ this ]( auto ar ) { set_size( ar[ 0 ], ar[ 1 ] ); } };
 
     std::array< int, 2 >                          get_position( ) const;
     void                                          set_position( const int& x, const int& y );
     detail::getter_setter< std::array< int, 2 > > position {
-      [ this ]( ) { return get_position( ); },
-      [ this ]( auto ar ) { set_position( ar[ 0 ], ar[ 1 ] ); }
+      [ this ]( ) { return get_position( ); }, [ this ]( auto ar ) { set_position( ar[ 0 ], ar[ 1 ] ); }
     };
 
     const bool&                   get_auto_redraw( ) const;
     void                          set_auto_redraw( const bool& yesno );
     detail::getter_setter< bool > auto_redraw { [ this ]( ) { return get_auto_redraw( ); },
-                                                [ this ]( const bool& yesno ) {
-                                                  set_auto_redraw( yesno );
-                                                } };
+                                                [ this ]( const bool& yesno ) { set_auto_redraw( yesno ); } };
 
     const bool&                   get_antialiasing( ) const;
     void                          set_antialiasing( const bool& yesno );
     detail::getter_setter< bool > antialiasing { [ this ]( ) { return get_antialiasing( ); },
-                                                 [ this ]( const bool& yesno ) {
-                                                   set_antialiasing( yesno );
-                                                 } };
+                                                 [ this ]( const bool& yesno ) { set_antialiasing( yesno ); } };
 
     // Legend should be a figure property, but it is pary of the plot in Qcustomplot
     bool                          get_show_legend( ) const;
     void                          set_show_legend( const bool& yesno );
     detail::getter_setter< bool > show_legend { [ this ]( ) { return get_show_legend( ); },
-                                                [ this ]( const bool& yesno ) {
-                                                  set_show_legend( yesno );
-                                                } };
+                                                [ this ]( const bool& yesno ) { set_show_legend( yesno ); } };
 
     void                          set_legend_alignment( const alignment_t& a );
-    detail::setter< alignment_t > legend_alignment { [ this ]( const alignment_t& a ) {
-      set_legend_alignment( a );
-    } };
+    detail::setter< alignment_t > legend_alignment { [ this ]( const alignment_t& a ) { set_legend_alignment( a ); } };
 
-    void                          set_legend_columns( const int& cols );
-    detail::setter< int > legend_columns { [ this ]( const int& cols ) {
-      set_legend_columns( cols );
-    } };
+    void                  set_legend_columns( const int& cols );
+    detail::setter< int > legend_columns { [ this ]( const int& cols ) { set_legend_columns( cols ); } };
 
     const std::vector< class figure >& figures( ) const;
     std::vector< class figure >&       figures( );
@@ -203,8 +184,7 @@ cxxplot_WARNOFF
       }
       else
       {
-        return figure( 0 ).add_graph( std::forward< Container_t >( data ),
-                                      std::forward< Args >( args )... );
+        return figure( 0 ).add_graph( std::forward< Container_t >( data ), std::forward< Args >( args )... );
       }
     }
 
@@ -249,13 +229,11 @@ cxxplot_WARNOFF
       constexpr auto num_args = sizeof...( Args );
       if constexpr ( num_args != 0 )
       {
-        constexpr auto used = window_proxy::dry_run_set< Args... >( )
-                              + figure::dry_run_set< Args... >( )
+        constexpr auto used = window_proxy::dry_run_set< Args... >( ) + figure::dry_run_set< Args... >( )
                               + graph ::dry_run_set< Args... >( );
 
-        static_assert(
-          used == num_args,
-          "Error: Window constructor was provided with an incorrect number of arguments." );
+        static_assert( used == num_args,
+                       "Error: Window constructor was provided with an incorrect number of arguments." );
 
         set_auto_redraw( default_auto_redraw );
 
@@ -293,13 +271,11 @@ cxxplot_WARNOFF
       constexpr auto num_args = sizeof...( Args );
       if constexpr ( num_args != 0 )
       {
-        constexpr auto used = window_proxy::dry_run_set< Args... >( )
-                              + figure::dry_run_set< Args... >( )
+        constexpr auto used = window_proxy::dry_run_set< Args... >( ) + figure::dry_run_set< Args... >( )
                               + graph ::dry_run_set< Args... >( );
 
-        static_assert(
-          used == num_args,
-          "Error: Window constructor was provided with an incorrect number of arguments." );
+        static_assert( used == num_args,
+                       "Error: Window constructor was provided with an incorrect number of arguments." );
 
         set_auto_redraw( default_auto_redraw );
 
@@ -345,7 +321,7 @@ cxxplot_WARNOFF
   inline const named_parameter window_title_ { &window_proxy::set_title };
   inline const named_parameter show_legend_ { &window_proxy::set_show_legend };
   inline const named_parameter legend_alignment_ { &window_proxy::set_legend_alignment };
-  inline const named_parameter legend_columns_ { &window_proxy::set_legend_columns};
+  inline const named_parameter legend_columns_ { &window_proxy::set_legend_columns };
   inline const named_parameter fonts_size_ { &window_proxy::set_fonts_size };
 
   inline const named_parameter auto_redraw_ { &window_proxy::set_auto_redraw };
@@ -355,13 +331,11 @@ cxxplot_WARNOFF
   template< class T, typename... Args >
   window_proxy plot( std::initializer_list< T > list, Args && ... args )
   {
-    return window_proxy( std::vector< T >( list.begin( ), list.end( ) ),
-                         std::forward< Args >( args )... );
+    return window_proxy( std::vector< T >( list.begin( ), list.end( ) ), std::forward< Args >( args )... );
   }
 
   template< class T1, class T2, typename... Args >
-  window_proxy plot(
-    std::initializer_list< T1 > l1, std::initializer_list< T2 > l2, Args && ... args )
+  window_proxy plot( std::initializer_list< T1 > l1, std::initializer_list< T2 > l2, Args && ... args )
   {
     std::vector< double > v1( l1.begin( ), l1.end( ) );
     std::vector< double > v2( l2.begin( ), l2.end( ) );
@@ -388,7 +362,7 @@ cxxplot_WARNOFF
     return window_proxy( std::forward< Arg0 >( arg0 ), std::forward< Args >( args )... );
   }
 
-inline window_proxy plot( const bool &show = true )
+  inline window_proxy plot( const bool& show = true )
   {
     return window_proxy( show );
   }

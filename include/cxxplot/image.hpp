@@ -26,7 +26,7 @@ public:
          const std::size_t& bytes_per_line,
          const Format&      format,
          QCustomPlot*       parent_plot,
-         figure*            parent);
+         figure*            parent );
 
   void update( unsigned char*     data,
                const std::size_t& width,

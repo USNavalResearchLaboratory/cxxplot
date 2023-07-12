@@ -79,12 +79,11 @@ cxxplot_WARNOFF
   void graph::append_data( const QVector< double >& x, const QVector< double >& y )
   {
     // TODO: range exapand or pick for QCPGraph?
-    invoke_blocking(
-      [ this, &x, &y ]( ) // TODO: We probably can pass by reference here instead of by value. Test
-      {
-        auto doNotSort = true;
-        QCPGraph_->addData( x, y, doNotSort );
-      } );
+    invoke_blocking( [ this, &x, &y ]( ) // TODO: We probably can pass by reference here instead of by value. Test
+                     {
+                       auto doNotSort = true;
+                       QCPGraph_->addData( x, y, doNotSort );
+                     } );
 
     parent_figure_->handle_updated_visual_items( );
   }
@@ -156,8 +155,7 @@ cxxplot_WARNOFF
       {
         throw_stream< std::out_of_range > ts;
 
-        ts << "Color component out of range. Requested value: " << v
-           << ". Allowable range: [0,255].";
+        ts << "Color component out of range. Requested value: " << v << ". Allowable range: [0,255].";
 
         ts.throw_now( );
       }

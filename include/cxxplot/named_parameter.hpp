@@ -67,8 +67,7 @@ struct supports_named_parameters
   template< std::size_t ArgumentsUsed, typename FirstArg, typename... OtherArgs >
   static constexpr std::size_t dry_run_set_impl( )
   {
-    constexpr bool applies_to_class
-      = std::is_same< T, typename std::decay_t< FirstArg >::Class >::value;
+    constexpr bool applies_to_class = std::is_same< T, typename std::decay_t< FirstArg >::Class >::value;
 
     if constexpr ( applies_to_class )
     {
@@ -104,8 +103,7 @@ struct supports_named_parameters
   template< typename FirstArg, typename... OtherArgs >
   void set_impl( FirstArg&& first_arg, OtherArgs&&... args )
   {
-    constexpr bool applies_to_class
-      = std::is_same< T, typename std::decay_t< FirstArg >::Class >::value;
+    constexpr bool applies_to_class = std::is_same< T, typename std::decay_t< FirstArg >::Class >::value;
 
     if constexpr ( applies_to_class )
     {
@@ -125,8 +123,7 @@ struct named_parameter
 {
   using Tuple = std::tuple< T... >;
 
-  named_parameter( void ( ClassType::*member_function_pointer )( T... ) ) :
-    fp( member_function_pointer )
+  named_parameter( void ( ClassType::*member_function_pointer )( T... ) ) : fp( member_function_pointer )
   {
   }
 

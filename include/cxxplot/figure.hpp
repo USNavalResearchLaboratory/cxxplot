@@ -74,11 +74,11 @@ cxxplot_WARNOFF
 
     void fit_to_data( const bool& request_replot = true );
 
-    void set_xlim( double lower, double upper );
-    std::array<double, 2> get_xlim( );
+    void                    set_xlim( double lower, double upper );
+    std::array< double, 2 > get_xlim( );
 
-    void set_ylim( double lower, double upper );
-    std::array<double, 2> get_ylim( );
+    void                    set_ylim( double lower, double upper );
+    std::array< double, 2 > get_ylim( );
 
     std::string get_xlabel( ) const;
     void        set_xlabel( std::string new_label );
@@ -87,9 +87,7 @@ cxxplot_WARNOFF
     void        set_ylabel( std::string new_label );
 
     void                     set_axes_line_width( const double& t );
-    detail::setter< double > axes_line_width { [ this ]( const double& t ) {
-      set_axes_line_width( t );
-    } };
+    detail::setter< double > axes_line_width { [ this ]( const double& t ) { set_axes_line_width( t ); } };
 
     std::vector< std::unique_ptr< class graph > > graphs_;
 
@@ -107,24 +105,22 @@ cxxplot_WARNOFF
     class graph& add_graph( Arg0&& arg0, Arg1&& arg1, Args&&... args )
     {
       // To resolve overload ambiguities
-      if constexpr ( BasicRealContainer< typename std::decay<
-                       Arg0 >::type > && BasicRealContainer< typename std::decay< Arg1 >::type > )
+      if constexpr ( BasicRealContainer< typename std::decay< Arg0 >::type >
+                     && BasicRealContainer< typename std::decay< Arg1 >::type > )
       {
-        return add_graph_with_two_containers( std::forward< Arg0 >( arg0 ),
-                                              std::forward< Arg1 >( arg1 ),
-                                              std::forward< Args >( args )... );
+        return add_graph_with_two_containers(
+          std::forward< Arg0 >( arg0 ), std::forward< Arg1 >( arg1 ), std::forward< Args >( args )... );
       }
       else
       {
-        return add_graph_with_one_container( std::forward< Arg0 >( arg0 ),
-                                             std::forward< Arg1 >( arg1 ),
-                                             std::forward< Args >( args )... );
+        return add_graph_with_one_container(
+          std::forward< Arg0 >( arg0 ), std::forward< Arg1 >( arg1 ), std::forward< Args >( args )... );
       }
     }
 
     class graph& graph( const std::size_t& i );
 
-    image& add_image(unsigned char*       data,
+    image& add_image( unsigned char*       data,
                       const std::size_t&   width,
                       const std::size_t&   height,
                       const std::size_t&   bytes_per_line,
@@ -134,19 +130,15 @@ cxxplot_WARNOFF
       set_xlim( ar[ 0 ], ar[ 1 ] );
     } };
 
-    detail::setter< std::array< double, 2 > > y_range { [ this ]( auto ar ) {
-      set_ylim( ar[ 0 ], ar[ 1 ] );
-    } };
+    detail::setter< std::array< double, 2 > > y_range { [ this ]( auto ar ) { set_ylim( ar[ 0 ], ar[ 1 ] ); } };
 
-    detail::getter_setter< std::string > x_label { [ this ]( ) { return get_xlabel( ); },
-                                                   [ this ]( const std::string& new_label ) {
-                                                     set_xlabel( new_label );
-                                                   } };
+    detail::getter_setter< std::string > x_label {
+      [ this ]( ) { return get_xlabel( ); }, [ this ]( const std::string& new_label ) { set_xlabel( new_label ); }
+    };
 
     detail::getter_setter< std::string > y_label {
       [ this ]( ) { return get_ylabel( ); },
-      [ this ]( const std::string&
-                  new_label ) // TODO: Fix these to make the getter setter to accept functions
+      [ this ]( const std::string& new_label ) // TODO: Fix these to make the getter setter to accept functions
       { set_ylabel( new_label ); }
     };
 
@@ -154,19 +146,17 @@ cxxplot_WARNOFF
     detail::setter< bool > auto_fit { [ this ]( const bool& ar ) { this->set_auto_fit( ar ); } };
 
     void                     set_axes_aspect_ratio( const double& r );
-    detail::setter< double > axes_aspect_ratio { [ this ]( const double& r ) {
-      this->set_axes_aspect_ratio( r );
-    } };
+    detail::setter< double > axes_aspect_ratio { [ this ]( const double& r ) { this->set_axes_aspect_ratio( r ); } };
 
     void                                set_x_axis_scaling_type( const axis_scaling_type& sc );
-    detail::setter< axis_scaling_type > x_axis_scaling_type {
-      [ this ]( const axis_scaling_type& sc ) { this->set_x_axis_scaling_type( sc ); }
-    };
+    detail::setter< axis_scaling_type > x_axis_scaling_type { [ this ]( const axis_scaling_type& sc ) {
+      this->set_x_axis_scaling_type( sc );
+    } };
 
     void                                set_y_axis_scaling_type( const axis_scaling_type& sc );
-    detail::setter< axis_scaling_type > y_axis_scaling_type {
-      [ this ]( const axis_scaling_type& sc ) { this->set_y_axis_scaling_type( sc ); }
-    };
+    detail::setter< axis_scaling_type > y_axis_scaling_type { [ this ]( const axis_scaling_type& sc ) {
+      this->set_y_axis_scaling_type( sc );
+    } };
 
     friend class graph;
     friend class image;
@@ -192,8 +182,7 @@ cxxplot_WARNOFF
 
       constexpr auto used = graph ::dry_run_set< Args... >( );
 
-      static_assert( used == num_args,
-                     "Error: Incorrect number of arguments were provided to the graph." );
+      static_assert( used == num_args, "Error: Incorrect number of arguments were provided to the graph." );
 
       last.set( std::forward< Args >( args )... );
 
@@ -201,9 +190,7 @@ cxxplot_WARNOFF
     }
 
     template< class Container1_t, class Container2_t, typename... Args >
-    class graph& add_graph_with_two_containers( const Container1_t& c1,
-                                                const Container2_t& c2,
-                                                Args&&... args )
+    class graph& add_graph_with_two_containers( const Container1_t& c1, const Container2_t& c2, Args&&... args )
     {
       auto& g = add_graph( );
 
@@ -214,8 +201,7 @@ cxxplot_WARNOFF
       {
         constexpr auto used = graph ::dry_run_set< Args... >( );
 
-        static_assert( used == num_args,
-                       "Error: add_graph was provided with an incorrect number of arguments." );
+        static_assert( used == num_args, "Error: add_graph was provided with an incorrect number of arguments." );
 
         g.set( std::forward< Args >( args )... );
       }

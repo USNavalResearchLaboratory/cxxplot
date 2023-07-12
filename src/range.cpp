@@ -6,8 +6,7 @@
 namespace cxxplot
 {
 
-range::range( range&& other ) :
-  min( std::exchange( other.min, 0 ) ), max( std::exchange( other.max, 0 ) )
+range::range( range&& other ) : min( std::exchange( other.min, 0 ) ), max( std::exchange( other.max, 0 ) )
 {
 }
 
@@ -34,10 +33,10 @@ void range::expand( const range& other )
   max = std::max( max, other.max );
 }
 
-void range::scale(const double &s)
+void range::scale( const double& s )
 {
-  auto mean = ( min + max ) / 2.0;
-  auto half_extent = (max - min ) / 2.0;
+  auto mean        = ( min + max ) / 2.0;
+  auto half_extent = ( max - min ) / 2.0;
 
   min = mean - half_extent * s;
   max = mean + half_extent * s;

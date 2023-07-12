@@ -44,8 +44,7 @@ window_proxy::window_proxy( const bool& show )
       this->show( );
     }
 
-    connect(
-      QApplication::instance( ), SIGNAL( aboutToQuit( ) ), plot_widget_, SLOT( deleteLater( ) ) );
+    connect( QApplication::instance( ), SIGNAL( aboutToQuit( ) ), plot_widget_, SLOT( deleteLater( ) ) );
   } );
 
   if ( show )
@@ -60,8 +59,7 @@ window_proxy::window_proxy( QPointer< widget > plot_widget ) :
 {
 }
 
-window_proxy::window_proxy( window_proxy&& other ) :
-  plot_widget_( std::exchange( other.plot_widget_, nullptr ) )
+window_proxy::window_proxy( window_proxy&& other ) : plot_widget_( std::exchange( other.plot_widget_, nullptr ) )
 {
 }
 
@@ -79,9 +77,8 @@ void window_proxy::set_open_gl( const bool& opengl, const bool experimental_warn
 {
   valid_or_throw( );
 
-  invoke_blocking( [ this, opengl, experimental_warning ]( ) {
-    plot_widget_->set_open_gl( opengl, experimental_warning );
-  } );
+  invoke_blocking(
+    [ this, opengl, experimental_warning ]( ) { plot_widget_->set_open_gl( opengl, experimental_warning ); } );
 }
 
 void window_proxy::show( )
@@ -132,9 +129,8 @@ void window_proxy::set_title( std::string name )
 {
   valid_or_throw( );
 
-  invoke_nonblocking(
-    [ this, name ]( ) { plot_widget_->setWindowTitle( QString::fromStdString( name ) ); },
-    plot_widget_ );
+  invoke_nonblocking( [ this, name ]( ) { plot_widget_->setWindowTitle( QString::fromStdString( name ) ); },
+                      plot_widget_ );
 }
 
 void window_proxy::redraw( )
@@ -151,10 +147,7 @@ void window_proxy::wait_redraw_to_finish( )
   plot_widget_->wait_redraw_to_finish( );
 }
 
-bool window_proxy::save( const std::string& name,
-                         const int&         width,
-                         const int&         height,
-                         const bool         force_overwrite )
+bool window_proxy::save( const std::string& name, const int& width, const int& height, const bool force_overwrite )
 {
   valid_or_throw( );
 
@@ -316,8 +309,7 @@ class figure& window_proxy::figure( const std::size_t& i )
   if ( i >= figures( ).size( ) )
   {
     std::stringstream ss;
-    ss << "You are trying to access figure " << i + 1 << " of " << figures( ).size( )
-       << " figures.";
+    ss << "You are trying to access figure " << i + 1 << " of " << figures( ).size( ) << " figures.";
     throw std::out_of_range( ss.str( ) );
   }
   return plot_widget_->figure( i );

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "cxxplot/window.hpp"
 #include "cxxplot/point2d.hpp"
 #include "cxxplot/typetraits.hpp"
+#include "cxxplot/window.hpp"
 
 namespace cxxplot
 {
-  const char *version( );
+const char* version( );
 }

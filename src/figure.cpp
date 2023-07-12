@@ -11,8 +11,7 @@ namespace cxxplot
 {
 
 figure::figure( figure&& other ) :
-  autoFit_( std::exchange( other.autoFit_, true ) ),
-  user_x_range_( std::exchange( other.user_x_range_, range( ) ) ),
+  autoFit_( std::exchange( other.autoFit_, true ) ), user_x_range_( std::exchange( other.user_x_range_, range( ) ) ),
   user_y_range_( std::exchange( other.user_y_range_, range( ) ) ),
   user_set_range_( std::exchange( other.user_set_range_, false ) ),
   canonical_x_range_( std::exchange( other.canonical_x_range_, range( ) ) ),
@@ -78,8 +77,7 @@ void figure::set_xlim( double lower, double upper )
 
   update_canonical_ranges( );
 
-  invoke_blocking(
-    [ this, &lower, &upper ]( ) { window_proxy_->plot_widget_->xAxis->setRange( lower, upper ); } );
+  invoke_blocking( [ this, &lower, &upper ]( ) { window_proxy_->plot_widget_->xAxis->setRange( lower, upper ); } );
 
   window_proxy_->handle_updated_visual_items( *this );
 }
@@ -110,8 +108,7 @@ void figure::set_ylim( double lower, double upper )
 
   update_canonical_ranges( );
 
-  invoke_blocking(
-    [ this, &lower, &upper ]( ) { window_proxy_->plot_widget_->yAxis->setRange( lower, upper ); } );
+  invoke_blocking( [ this, &lower, &upper ]( ) { window_proxy_->plot_widget_->yAxis->setRange( lower, upper ); } );
 
   window_proxy_->handle_updated_visual_items( *this );
 }
@@ -161,8 +158,8 @@ image& figure::add_image( unsigned char*       data,
                           const image::Format& format )
 {
   invoke_blocking( [ &, this ]( ) {
-    images_.emplace_back( new cxxplot::image(
-      data, width, height, bytes_per_line, format, window_proxy_->plot_widget_, this ) );
+    images_.emplace_back(
+      new cxxplot::image( data, width, height, bytes_per_line, format, window_proxy_->plot_widget_, this ) );
 
     window_proxy_->plot_widget_->yAxis->setRangeReversed( true );
   } );
@@ -199,8 +196,7 @@ void figure::set_axes_aspect_ratio( const double& r )
     canonical_y_range_.max = window_proxy_->plot_widget_->yAxis->range( ).upper;
   }
 
-  window_proxy_->plot_widget_->yAxis->setScaleRatio( window_proxy_->plot_widget_->xAxis,
-                                                     axis_ratio_ );
+  window_proxy_->plot_widget_->yAxis->setScaleRatio( window_proxy_->plot_widget_->xAxis, axis_ratio_ );
 
   window_proxy_->handle_updated_visual_items( *this );
 }
@@ -210,8 +206,7 @@ void figure::set_x_axis_scaling_type( const axis_scaling_type& sc )
   if ( sc == axis_scaling_type::linear )
   {
     window_proxy_->plot_widget_->xAxis->setScaleType( QCPAxis::stLinear );
-    QSharedPointer< QCPAxisTicker > ticker(
-      new QCPAxisTicker ); // TODO: Reverting to linear has not been tested
+    QSharedPointer< QCPAxisTicker > ticker( new QCPAxisTicker ); // TODO: Reverting to linear has not been tested
     window_proxy_->plot_widget_->xAxis->setTicker( ticker );
     window_proxy_->plot_widget_->xAxis->setNumberFormat( "gb" );
     window_proxy_->plot_widget_->xAxis->setNumberPrecision( 6 );
@@ -231,8 +226,7 @@ void figure::set_y_axis_scaling_type( const axis_scaling_type& sc )
   if ( sc == axis_scaling_type::linear )
   {
     window_proxy_->plot_widget_->yAxis->setScaleType( QCPAxis::stLinear );
-    QSharedPointer< QCPAxisTicker > ticker(
-      new QCPAxisTicker ); // TODO: Reverting to linear has not been tested
+    QSharedPointer< QCPAxisTicker > ticker( new QCPAxisTicker ); // TODO: Reverting to linear has not been tested
     window_proxy_->plot_widget_->yAxis->setTicker( ticker );
     window_proxy_->plot_widget_->yAxis->setNumberFormat( "gb" );
     window_proxy_->plot_widget_->yAxis->setNumberPrecision( 6 );

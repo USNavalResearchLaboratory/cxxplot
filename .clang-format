@@ -36,7 +36,7 @@ BreakBeforeBraces: Custom
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: AfterColon
 BreakInheritanceList: AfterColon
-ColumnLimit: 100
+ColumnLimit: 120
 IndentCaseLabels: true
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeCpp11BracedList: true

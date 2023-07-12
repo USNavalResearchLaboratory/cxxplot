@@ -213,15 +213,11 @@ public:
 
   void setMarkerStyle( const MarkerStyle& style );
 
-  detail::setter< MarkerStyle > marker_style { [ this ]( const MarkerStyle& v ) {
-    setMarkerStyle( v );
-  } };
+  detail::setter< MarkerStyle > marker_style { [ this ]( const MarkerStyle& v ) { setMarkerStyle( v ); } };
 
   void set_line_style( const LineStyle& style );
 
-  detail::setter< LineStyle > lineStyle { [ this ]( const LineStyle& style ) {
-    set_line_style( style );
-  } };
+  detail::setter< LineStyle > lineStyle { [ this ]( const LineStyle& style ) { set_line_style( style ); } };
 
   void set_color_rgb( const int& r, const int& g, const int& b );
 
@@ -233,9 +229,7 @@ public:
   detail::setter< const std::string& > name { [ this ]( const std::string& n ) { set_name( n ); } };
 
   void                          set_visible_in_legend( const bool& visible_in_legend );
-  detail::setter< const bool& > visible_in_legend { [ this ]( const bool& b ) {
-    set_visible_in_legend( b );
-  } };
+  detail::setter< const bool& > visible_in_legend { [ this ]( const bool& b ) { set_visible_in_legend( b ); } };
 
   const struct range& x_range( ) const;
 

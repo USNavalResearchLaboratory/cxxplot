@@ -44,11 +44,11 @@
 
 cxxplot_WARNOFF
 #include <qcustomplot.h>
-cxxplot_WARNON
+  cxxplot_WARNON
 
-cxxplot_WARNOFF
+    cxxplot_WARNOFF
 #include <QElapsedTimer>
-cxxplot_WARNON
+      cxxplot_WARNON
 
   namespace cxxplot
 {
@@ -104,7 +104,7 @@ cxxplot_WARNON
   private slots:
     void handle_after_replot( );
     void showContextMenu( const QPoint& pos );
-    void save();
+    void save( );
 
   private:
     bool auto_redraw_                 = true;

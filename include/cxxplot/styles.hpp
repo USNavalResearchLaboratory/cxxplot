@@ -78,11 +78,11 @@ enum class LineStyle
 
 struct curve_style
 {
-  color::rgb  color;
+  color::rgb color;
 
-  color::rgb  fill_color;
-  double      line_width;
-  LineStyle   line_style;
+  color::rgb fill_color;
+  double     line_width;
+  LineStyle  line_style;
 
   MarkerStyle point_style;
   double      point_marker_width;
@@ -96,9 +96,7 @@ struct theme
   color::rgb text_color;
   double     font_size;
 
-  std::function< curve_style( const std::size_t &n ) > nth_curve_style;
+  std::function< curve_style( const std::size_t& n ) > nth_curve_style;
 };
-
-
 
 }

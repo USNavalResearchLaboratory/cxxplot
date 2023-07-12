@@ -40,10 +40,10 @@
 
 #pragma once
 
-#include <functional>
-#include <thread>
-#include <mutex>
 #include <condition_variable>
+#include <functional>
+#include <mutex>
+#include <thread>
 
 class QThread;
 namespace cxxplot
@@ -74,7 +74,6 @@ private:
   std::condition_variable cv;
   bool                    initialized_ = false;
 };
-
 
 }
 
