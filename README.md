@@ -48,14 +48,14 @@ Output:
 ```
 Qt5 or Qt6 and a C++20 compliant compiler
 ```
-## Install dependencies:
+## Installing dependencies
 ### Debian/Ubuntu:
 In a command line, type:
 ```bash
 sudo apt install qtbase5-dev git cmake build-essential
 ````
 ### Windows 
-Download and install a version of the Qt SDK. You can either use the MinGW compiler packaged with Qt or also install MSVC 2022.
+Download and install a version of the Qt SDK and git for Windows. You can either use the MinGW compiler packaged with Qt or additionally install MSVC 2022.
 
 # Compiling from source
 This is an optional step.
