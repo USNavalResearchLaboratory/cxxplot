@@ -83,7 +83,7 @@ FetchContent_Declare(
   GIT_TAG        v0.4.1
 )
 
-FetchContent_MakeAvailable(cxxplot)
+FetchContent_MakeAvailable( cxxplot )
 
 # ...
 
