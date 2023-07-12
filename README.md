@@ -107,26 +107,26 @@ A standalone example that can be used as a starting point can be found in [102_c
 <div align="center">
   <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/barnsley_fern.png" alt="Barnsley fern">
   
-[Link to source for the image above](examples/03_barnsley_fern/main.cpp)
+[Link to source for the image above](examples/003_barnsley_fern/main.cpp)
 </div>
 
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/multiple_plots.png" alt="Multiple plots">
 
-[Link to source for the image above](examples/04_compute_and_plot/main.cpp)
+[Link to source for the image above](examples/004_compute_and_plot/main.cpp)
 </div>
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/08_animation.gif" alt="Multiple plots">
 
-[Link to source for the animation above](examples/08_animation/main.cpp)
+[Link to source for the animation above](examples/008_animation/main.cpp)
 </div>
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/linecolor.png" alt="Multiple plots">
 
-[Link to source for the image  above](examples/07_line_color_order/main.cpp)
+[Link to source for the image  above](examples/007_line_color_order/main.cpp)
 </div>
 
 ## Multiple windows dynamically updated
