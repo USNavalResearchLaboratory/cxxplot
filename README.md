@@ -44,18 +44,21 @@ Output:
   <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/basic_example.png" alt="Basic example">
 </div>
 
-## Compiling from source
 # Dependencies & Requirements:
 ```
 Qt5 or Qt6 and a C++20 compliant compiler
 ```
-# Ubuntu Linux
-## Install dependencies:
+##Install dependencies:
+###Debian/Ubuntu:
 In a command line, type:
 ```bash
 sudo apt install qtbase5-dev git cmake build-essential
 ````
-## (Optional): Clone git repository, compile and install
+###Windows 
+Download and install a version of the Qt SDK. You can either use the MinGW compiler packaged with Qt, or alternatively also install MSVC 2022.
+
+# Compiling:
+The standard way of using cxxplot is by integrating it into a CMake project using FetchContent (see the section [below](#Automatic-integration-using-CMake-FetchContent).  If, on the other hand, you plan to share the library between multiple projects, you may want to compile and install by using the following terminal commands:
 ```bash
 git clone https://github.com/USNavalResearchLaboratory/cxxplot.git
 mkdir cxxplotbuild && cd cxxplotbuild
@@ -65,6 +68,26 @@ sudo make install
 ```
 
 # Using
+## Automatic integration using CMake FetchContent
+This is generally the way we use cxxplot, which automatically downloads, compiles, and uses the library. 
+Add the following to your cmake file:
+```cmake
+include( FetchContent )
+
+FetchContent_Declare(
+  cxxplot
+  GIT_REPOSITORY https://github.com/USNavalResearchLaboratory/cxxplot.git
+  GIT_TAG        v0.4.1
+)
+
+FetchContent_MakeAvailable(cxxplot)
+...
+# link to it:
+target_link_libraries( mytargetname PRIVATE cxxplot::cxxplot )
+```
+
+A complete standalone example that can be used as a starting point can be found in [101_cmake_fetchcontent](examples/101_cmake_fetchcontent).
+
 ## If installed in your system
 The following snippet will allow linking to cxxplot v 0.4.1 and above:
 ```cmake
@@ -73,21 +96,9 @@ find_package( cxxplot 0.4.1 REQUIRED ) # Modify the version or omit the version 
 ...
 target_link_libraries( mytarget PRIVATE cxxplot::cxxplot )
 ```
-A complete standalone example that can be used as a starting point can be found in [81_cmake_setup1](examples/81_cmake_setup1).
+A complete standalone example that can be used as a starting point can be found in [102_cmake_findpackage](examples/102_cmake_findpackage).
 
-## Automatic integration using CMake's FetchContent (will download and compile on demand)
-Add the following to your cmake file:
-```cmake
-FetchContent_Declare(
-  cxxplot
-  GIT_REPOSITORY https://github.com/USNavalResearchLaboratory/cxxplot.git
-  GIT_TAG        v0.4.1
-)
-FetchContent_MakeAvailable(cxxplot)
-...
-# link to it:
-target_link_libraries( mytargetname PRIVATE cxxplot::cxxplot )
-```
+
 # Example plots
 <div align="center">
   <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/barnsley_fern.png" alt="Barnsley fern">
