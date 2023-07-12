@@ -94,7 +94,7 @@ target_link_libraries( mytargetname PRIVATE cxxplot::cxxplot )
 A standalone example that can be used as a starting point can be found in [101_cmake_fetchcontent](examples/101_cmake_fetchcontent).
 
 ## If installed in your system
-Suppose cxxplot is installed in your system by your package manager or by following [these instructions](#Compiling-from-source). In that case, the following snippet will allow linking to cxxplot v 0.4.1 and above:
+Suppose cxxplot is installed in your system by your package manager or by following [these instructions](#Compiling-from-source). In this case, the following snippet will allow linking to cxxplot v 0.4.1 and above:
 ```cmake
 ...
 find_package( cxxplot 0.4.1 REQUIRED ) # Modify the version or omit the version altogether
@@ -129,13 +129,13 @@ A standalone example that can be used as a starting point can be found in [102_c
 [Link to source for the image  above](examples/07_line_color_order/main.cpp)
 </div>
 
-## Multiple windows dynamically, updated
+## Multiple windows dynamically updated
 <div align="center">
   <img src="https://raw.githubusercontent.com/USNavalResearchLaboratory/cxxplot/main/doc/images/multiple_windows.gif" alt="Multiple windows">
 </div>
 
 # A note on the implementation
-To allow for dynamic updating, non-blocking plots, and portability across the three main OSes (Windows, Linux, macOS), cxxplot default mode of operation is to run on the main thread. This restriction is imposed by certain OSes. 
+To allow for dynamic updating, non-blocking plots, and portability across the three main OSes (Windows, Linux, macOS), cxxplot default mode of operation is to run on the main thread. Certain OSes impose this restriction. 
 
 Therefore, cxxplot requires the user code to reside in a function called by ```cxxplot::exec```. This introduces the need to instead of using the typical ```main``` form:
 ```c++
@@ -146,7 +146,7 @@ int main( int argc, char* argv[] )
     return 0;
 }
 ```
-to use this alternative:
+, to use this alternative:
 ```c++
 int main( int argc, char* argv[] )
 {
@@ -157,26 +157,26 @@ int main( int argc, char* argv[] )
   } );
 }
 ```
-## Windows and linux only
-cxxplot supports a less intrusive mode of operation, where the gui thread is managed by an object. This functinonality is supported in Windows and Linux but has not been tested to work on macOS:
+## Windows and Linux only
+cxxplot supports a less intrusive mode of operation, where an object manages the GUI thread. This functionality is supported in Windows and Linux but has not been tested to work on macOS:
 ```c++
 int main( int argc, char* argv[] )
 {
-  auto t = cxxplot::experimental::gui_thread( argc, argv ); // The gui thread will be alive as long as t is alive.
+  auto t = cxxplot::experimental::gui_thread( argc, argv ); // TheGUIi thread will be alive as long as t is alive.
   // user code goes here
     ...
 }
 ```
-Instantiating the gui thread through a smart pointer, allows you for safe use across multiple scopes (for example if you need to create it in an init() function and destroy it from a close() function).
+Instantiating the gui thread through a smart pointer allows you for safe use across multiple scopes (for example, if you need to create it in an init() function and destroy it from a close() function).
 
 # Development state
-Versions 0.x.x are alpha state versions and the interface is expected to be be evolving. Therefore if you use cxxplot in your project you are advised to use explicit version designation when using find_package or FetchContent in cmake. 
+Versions 0.x.x are alpha state versions, and the interface is expected to evolve. So, if you use cxxplot in your project, you should use explicit version designation when using find_package or FetchContent in cmake. 
 
-cxxplot default install behaviour, distributes different versions in different folders and you can have multiple versions without collisions.
+cxxplot default install behavior distributes different versions in different folders, and you can have multiple versions without collisions.
 
 # License intent
-cxxplot is the work of U.S. Government employees and the relevant source code is in the public domain. Please read the [license](license.txt) to ensure you can satisfy the authorization to use and distribute requirements.
+cxxplot is the work of U.S. Government employees, and the relevant source code is in the public domain. Please read the [license](license.txt) to ensure you can satisfy the authorization to use and distribute requirements.
 
-Third party libraries included with cxxplot have their own respective licenses. Distribution of derivative work need to satisfy those licenses as well. If you plan to use cxxplot in a non open-source manner, you need to make arrangements with the individual copyright holders. More information can be found in the [licenses](licenses) folder.
+Third-party libraries included with cxxplot have their own respective licenses. Distribution of derivative work needs to satisfy those licenses as well. If you plan to use cxxplot in a non-open-source manner, you must make arrangements with the individual copyright holders. More information can be found in the [licenses](licenses) folder.
 
 DISTRIBUTION STATEMENT A. Approved for public release; distribution is unlimited.
