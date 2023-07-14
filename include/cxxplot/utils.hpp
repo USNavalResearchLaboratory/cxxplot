@@ -39,6 +39,7 @@
 // Additional information can be found in the provided "licenses" folder.
 
 #pragma once
+#include <cstdint>
 #include <cstring>
 #include <sstream>
 #include <string>
