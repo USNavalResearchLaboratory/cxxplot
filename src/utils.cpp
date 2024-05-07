@@ -89,7 +89,7 @@ std::vector< std::vector< double > > read_delimited( const std::string& filename
       throw_runtime_error( "Could not open file." );
     }
 
-    std::size_t line_num = 0;
+    //std::size_t line_num = 0;
     std::string line;
 
     for ( std::size_t i = 0; i != first_row; i++ )
@@ -98,7 +98,7 @@ std::vector< std::vector< double > > read_delimited( const std::string& filename
       {
         throw_runtime_error( "Premature end of file end when skipping rows." );
       }
-      line_num++;
+      //line_num++;
     }
 
     std::vector< double > data;
